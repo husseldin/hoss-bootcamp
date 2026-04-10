@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Setup Test — 3 Questions</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:system-ui;background:#0d1117;color:#e6edf3;padding:20px;max-width:600px;margin:auto}h1{color:#58a6ff;font-size:18px;margin-bottom:15px}.q{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:12px;margin:8px 0}h3{color:#79c0ff;font-size:13px;margin-bottom:6px}label{display:block;padding:3px 0;cursor:pointer;font-size:12px}input[type=radio],input[type=checkbox]{margin-right:8px}button{background:#238636;color:#fff;border:none;padding:10px 24px;border-radius:6px;font-size:14px;cursor:pointer;margin-top:15px}.result{display:none;text-align:center;padding:20px;font-size:16px}</style></head><body>
+<h1>🧪 Setup Verification Test</h1>
+<div class="q"><h3>Q1. Choice</h3><p style="font-size:12px;margin-bottom:6px">What does git init do?</p>
+<label><input type="radio" name="q1" value="A"> A. Installs Git</label>
+<label><input type="radio" name="q1" value="B"> B. Creates a new Git repository</label>
+<label><input type="radio" name="q1" value="C"> C. Deletes a repository</label></div>
+<div class="q"><h3>Q2. Yes/No</h3><p style="font-size:12px;margin-bottom:6px">Have you used a terminal before?</p>
+<label><input type="radio" name="q2" value="yes"> ✅ Yes</label>
+<label><input type="radio" name="q2" value="no"> ❌ No</label></div>
+<div class="q"><h3>Q3. Multi-Select</h3><p style="font-size:12px;margin-bottom:6px">Which are version control systems?</p>
+<label><input type="checkbox" name="q3" value="0"> Git</label>
+<label><input type="checkbox" name="q3" value="1"> Photoshop</label>
+<label><input type="checkbox" name="q3" value="2"> Mercurial</label></div>
+<button onclick="submit()">Submit</button>
+<div class="result" id="result"></div>
+<script>
+const WEBHOOK='https://discord.com/api/webhooks/1492247082663153778/BPklT8BQdkcTo8SUdzNLdHM4bvw5-uyR0WjZcPVcFqSKiI7mHo4zsdL2nYWTYiZc6it8';
+function submit(){
+let a1=document.querySelector('input[name=q1]:checked');let a2=document.querySelector('input[name=q2]:checked');
+let a3=[...document.querySelectorAll('input[name=q3]:checked')].map(c=>parseInt(c.value));
+let answers=[{id:1,type:'choice',selected:a1?a1.value:null,correct:'B',pass:a1&&a1.value==='B'},
+{id:2,type:'yesno',selected:a2?a2.value:null,pass:a2&&a2.value==='yes'},
+{id:3,type:'multi',selected:a3,correct:[0,2],pass:JSON.stringify(a3.sort())===JSON.stringify([0,2])}];
+let score=answers.filter(a=>a.pass).length;let passed=score>=2;
+document.getElementById('result').style.display='block';
+document.getElementById('result').innerHTML='<h2>'+(passed?'✅ PASSED':'❌ FAILED')+'</h2><p>Score: '+score+'/3</p><p style="color:#8b949e">✅ Submitted! Close this tab and check Discord.</p>';
+document.querySelector('button').style.display='none';
+fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({embeds:[{title:'🧪 Setup Test Result',color:passed?3066993:15158332,fields:[{name:'Score',value:score+'/3',inline:true},{name:'Status',value:passed?'PASSED ✅':'FAILED ❌',inline:true},{name:'Q1 Choice',value:(answers[0].pass?'✅':'❌')+' Selected: '+answers[0].selected,inline:true},{name:'Q2 Yes/No',value:(answers[1].pass?'✅':'❌')+' Selected: '+answers[1].selected,inline:true},{name:'Q3 Multi',value:(answers[2].pass?'✅':'❌')+' Selected: ['+answers[2].selected+']',inline:true}]}]})});}
+</script></body></html>
