@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Day 1 Assessment — Test</title>
+<style>
+body{font-family:system-ui;background:#1a1a2e;color:#eee;padding:20px;max-width:700px;margin:auto}
+h1{color:#00d4ff}.q{background:#16213e;border-radius:8px;padding:15px;margin:10px 0}
+.timer{font-size:24px;color:#ff6b6b;text-align:center;font-weight:bold}
+.progress{width:100%;height:8px;background:#333;border-radius:4px;margin:10px 0}
+.bar{height:100%;background:#00d4ff;border-radius:4px;transition:width 0.3s}
+button{background:#00d4ff;color:#000;border:none;padding:12px 30px;border-radius:8px;font-size:16px;cursor:pointer;margin-top:20px}
+button:hover{background:#00b4d8}
+.result{text-align:center;padding:30px;font-size:20px;display:none}
+</style></head><body>
+<h1>📝 Day 1 Assessment (Test)</h1>
+<div class="timer" id="timer">05:00</div>
+<div class="progress"><div class="bar" id="bar" style="width:100%"></div></div>
+<form id="quiz">
+
+<div class="q"><p><strong>Q1.</strong> What does <code>git init</code> do?</p>
+<label><input type="radio" name="q1" value="a"> Clones a remote repo</label><br>
+<label><input type="radio" name="q1" value="b"> Initializes a new Git repository</label><br>
+<label><input type="radio" name="q1" value="c"> Commits changes</label><br>
+<label><input type="radio" name="q1" value="d"> Pushes to GitHub</label>
+</div>
+
+<div class="q"><p><strong>Q2.</strong> True or False: <code>npm install</code> updates all packages to latest versions.</p>
+<label><input type="radio" name="q2" value="a"> True</label><br>
+<label><input type="radio" name="q2" value="b"> False</label>
+</div>
+
+<div class="q"><p><strong>Q3.</strong> Which command shows the current working directory?</p>
+<label><input type="radio" name="q3" value="a"> <code>ls</code></label><br>
+<label><input type="radio" name="q3" value="b"> <code>cd</code></label><br>
+<label><input type="radio" name="q3" value="c"> <code>pwd</code></label><br>
+<label><input type="radio" name="q3" value="d"> <code>dir</code></label>
+</div>
+
+<div class="q"><p><strong>Q4.</strong> True or False: VS Code is a terminal-based editor.</p>
+<label><input type="radio" name="q4" value="a"> True</label><br>
+<label><input type="radio" name="q4" value="b"> False</label>
+</div>
+
+<div class="q"><p><strong>Q5.</strong> Select all that apply: Which are version control systems?</p>
+<label><input type="checkbox" name="q5a" value="git"> Git</label><br>
+<label><input type="checkbox" name="q5b" value="svn"> SVN</label><br>
+<label><input type="checkbox" name="q5c" value="ftp"> FTP</label><br>
+<label><input type="checkbox" name="q5d" value="mercurial"> Mercurial</label>
+</div>
+
+<button type="button" onclick="submit()">Submit Assessment</button>
+</form>
+<div class="result" id="result"></div>
+<script>
+const ANSWERS={q1:"b",q2:"b",q3:"c",q4:"b",q5:["git","svn","mercurial"]};
+let time=300,timerId=setInterval(()=>{time--;let m=Math.floor(time/60),s=time%60;
+document.getElementById('timer').textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+document.getElementById('bar').style.width=(time/300*100)+'%';
+if(time<=0){clearInterval(timerId);submit();}},1000);
+
+function submit(){
+clearInterval(timerId);
+let score=0,total=5;
+if(document.querySelector('input[name=q1]:checked')?.value===ANSWERS.q1)score++;
+if(document.querySelector('input[name=q2]:checked')?.value===ANSWERS.q2)score++;
+if(document.querySelector('input[name=q3]:checked')?.value===ANSWERS.q3)score++;
+if(document.querySelector('input[name=q4]:checked')?.value===ANSWERS.q4)score++;
+let q5c=0;if(document.getElementById('q5a').checked)q5c++;if(document.getElementById('q5b').checked)q5c++;if(document.getElementById('q5d').checked)q5c++;
+if(!document.getElementById('q5c').checked&&q5c===3)score++;
+
+let pct=Math.round(score/total*100);
+let pass=pct>=65;
+document.getElementById('result').style.display='block';
+document.getElementById('result').innerHTML=`<h2>${pass?'✅ PASSED':'❌ FAILED'}</h2><p>Score: ${score}/${total} (${pct}%)</p>`;
+document.querySelector('form').style.display='none';
+
+fetch('https://discord.com/api/webhooks/1492247082663153778/BPklT8BQdkcTo8SUdzNLdHM4bvw5-uyR0WjZcPVcFqSKiI7mHo4zsdL2nYWTYiZc6it8',{method:'POST',headers:{'Content-Type':'application/json'},
+body:JSON.stringify({embeds:[{title:'📝 Assessment Result',description:'Day 1 Test Assessment',
+color:pass?3066993:15158332,fields:[{name:'Score',value:`${score}/${total} (${pct}%)`,inline:true},
+{name:'Time',value:`${5-Math.floor(time/60)} min`,inline:true},{name:'Status',value:pass?'PASSED ✅':'FAILED ❌',inline:true}]}]})});}
+</script></body></html>
