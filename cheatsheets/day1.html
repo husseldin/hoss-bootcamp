@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<title>Day 1 — Terminal & Git Cheat Sheet</title>
+<style>
+@page{size:A4;margin:12mm}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0d1117;color:#e6edf3;padding:15px;font-size:11px;line-height:1.4}
+h1{text-align:center;font-size:22px;background:linear-gradient(135deg,#58a6ff,#bc8cff,#f778ba);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:3px;letter-spacing:1px}
+.subtitle{text-align:center;color:#8b949e;font-size:10px;margin-bottom:10px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:10px;page-break-inside:avoid}
+.card h2{font-size:12px;color:#58a6ff;border-bottom:1px solid #21262d;padding-bottom:4px;margin-bottom:6px}
+.card h2::before{margin-right:4px}
+.cmd{background:#0d1117;border-left:3px solid #58a6ff;padding:3px 8px;margin:3px 0;border-radius:0 4px 4px 0;font-family:'Cascadia Code',monospace;font-size:10px}
+.cmd b{color:#79c0ff}
+.desc{color:#8b949e;font-size:9.5px;margin-left:4px}
+.tip{background:linear-gradient(135deg,#1a1e2e,#1c2333);border:1px solid #30363d;border-radius:8px;padding:8px;margin-top:8px;grid-column:1/-1}
+.tip h3{color:#f0883e;font-size:11px;margin-bottom:4px}
+.tip ul{padding-left:16px;color:#8b949e;font-size:9.5px}
+.tip li{margin:2px 0}
+.footer{text-align:center;color:#484f58;font-size:8px;margin-top:8px;padding-top:5px;border-top:1px solid #21262d}
+.code-block{background:#0d1117;border:1px solid #30363d;border-radius:4px;padding:6px;font-family:monospace;font-size:9px;white-space:pre;color:#c9d1d9;margin:4px 0}
+.hl{color:#ff7b72}.hb{color:#79c0ff}.hg{color:#7ee787}.hy{color:#e3b341}.hp{color:#d2a8ff}
+@media print{body{background:#fff;color:#000}.card{background:#f8f9fa;border-color:#ddd}.cmd{background:#f0f0f0;border-color:#58a6ff}.code-block{background:#f0f0f0;border-color:#ddd}h1{-webkit-text-fill-color:#58a6ff}}
+</style></head><body>
+
+<h1>⚡ Day 1 — Terminal & Git Cheat Sheet</h1>
+<div class="subtitle">7-Day AI Bootcamp · MentorBot · Print-friendly A4</div>
+
+<div class="grid">
+
+<div class="card">
+<h2>📂 Navigation Commands</h2>
+<div class="cmd"><b>pwd</b></div><div class="desc">Print working directory</div>
+<div class="cmd"><b>ls</b> [-la]</div><div class="desc">List files (-l=long, -a=hidden)</div>
+<div class="cmd"><b>cd</b> ~/Desktop</div><div class="desc">Change directory</div>
+<div class="cmd"><b>cd ..</b></div><div class="desc">Go up one level</div>
+<div class="cmd"><b>mkdir</b> my-project</div><div class="desc">Create new directory</div>
+<div class="cmd"><b>rm</b> -rf dir/</div><div class="desc">Remove directory (careful!)</div>
+</div>
+
+<div class="card">
+<h2>📄 File Operations</h2>
+<div class="cmd"><b>touch</b> hello.txt</div><div class="desc">Create empty file</div>
+<div class="cmd"><b>cat</b> file.txt</div><div class="desc">View file contents</div>
+<div class="cmd"><b>nano</b> file.txt</div><div class="desc">Edit file in terminal</div>
+<div class="cmd"><b>cp</b> src dest</div><div class="desc">Copy file</div>
+<div class="cmd"><b>mv</b> old new</div><div class="desc">Move/rename file</div>
+<div class="cmd"><b>head/tail</b> -n 10 file</div><div class="desc">First/Last 10 lines</div>
+</div>
+
+<div class="card">
+<h2>🔄 Git Essentials</h2>
+<div class="code-block"><span class="hg">git init</span>              <span class="desc"># Initialize repo</span>
+<span class="hb">git add</span> .               <span class="desc"># Stage all changes</span>
+<span class="hb">git commit</span> <span class="hl">-m</span> <span class="hy">"msg"</span>  <span class="desc"># Commit with message</span>
+<span class="hb">git push</span> origin main    <span class="desc"># Push to GitHub</span>
+<span class="hb">git pull</span> origin main    <span class="desc"># Pull latest changes</span>
+<span class="hg">git status</span>             <span class="desc"># Check status</span>
+<span class="hb">git log</span> <span class="hl">--oneline</span>      <span class="desc"># View commit history</span></div>
+</div>
+
+<div class="card">
+<h2>🌐 API & Network</h2>
+<div class="cmd"><b>curl</b> -s URL</div><div class="desc">Fetch URL content</div>
+<div class="cmd"><b>curl</b> -s URL | jq</div><div class="desc">Pretty-print JSON</div>
+<div class="cmd"><b>curl</b> -X POST -d '{}' URL</div><div class="desc">POST request</div>
+<div class="cmd"><b>wget</b> URL</div><div class="desc">Download file</div>
+<div class="code-block"><span class="hl"># Example: Call public API</span>
+curl -s <span class="hy">https://api.github.com/users/octocat</span> | jq <span class="hp">'.login,.public_repos'</span></div>
+</div>
+
+<div class="tip">
+<h3>💡 Pro Tips</h3>
+<ul>
+<li>Use <b>Tab</b> for auto-complete in terminal</li>
+<li><b>Ctrl+C</b> to cancel running command</li>
+<li><b>Ctrl+R</b> to search command history</li>
+<li><b>↑ ↓</b> arrows to browse previous commands</li>
+<li>Use <code>.gitignore</code> to exclude files from Git</li>
+<li>Always pull before push to avoid conflicts</li>
+</ul>
+</div>
+
+<div class="card" style="display:flex;flex-direction:column;justify-content:center;align-items:center">
+<h2 style="border:none;text-align:center">✅ Day 1 Checklist</h2>
+<div style="text-align:left;font-size:10px;line-height:2">
+☐ Navigate terminal with cd, ls, pwd<br>
+☐ Create files & directories<br>
+☐ Initialize a Git repo<br>
+☐ Make first commit & push<br>
+☐ Install VS Code extensions<br>
+☐ Call a public API with curl<br>
+☐ Submit assessment (65%+ to pass!)
+</div>
+</div>
+
+</div>
+
+<div class="footer">MentorBot · 7-Day AI Bootcamp · Day 1 · github.com/husseldin/hoss-bootcamp</div>
+</body></html>
