@@ -1,43 +1,24 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Hoss Bootcamp — Home Base</title>
-<style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:system-ui,-apple-system,sans-serif;background:#0d1117;color:#e6edf3;padding:20px;max-width:700px;margin:auto}
-h1{color:#58a6ff;font-size:24px;margin-bottom:5px;text-align:center}
-.sub{color:#8b949e;font-size:13px;text-align:center;margin-bottom:20px}
-.day{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:14px;margin:10px 0;transition:border-color 0.2s}
-.day:hover{border-color:#58a6ff}
-.day h2{color:#79c0ff;font-size:15px;margin-bottom:4px}
-.day p{color:#8b949e;font-size:12px;margin-bottom:8px}
-.day .status{font-size:11px;padding:3px 8px;border-radius:12px;display:inline-block}
-.locked{background:#21262d;color:#8b949e}
-.current{background:#1f6feb33;color:#58a6ff}
-.done{background:#23863633;color:#3fb950}
-.links{margin-top:8px}
-.links a{color:#58a6ff;font-size:12px;text-decoration:none;margin-right:12px}
-.links a:hover{text-decoration:underline}
-.progress{background:#21262d;border-radius:6px;height:8px;margin:15px 0;overflow:hidden}
-.bar{height:100%;background:linear-gradient(90deg,#238636,#3fb950);border-radius:6px;width:0%;transition:width 0.5s}
-.footer{text-align:center;color:#484f58;font-size:11px;margin-top:30px}
-</style></head><body>
-<h1>🚀 Hoss Bootcamp</h1>
-<p class="sub">7-Day AI Director Sprint — Home Base</p>
+<style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:system-ui;background:#0d1117;color:#e6edf3;padding:20px;max-width:700px;margin:auto}
+h1{color:#58a6ff;font-size:24px;margin-bottom:5px;text-align:center}.sub{color:#8b949e;font-size:13px;text-align:center;margin-bottom:20px}
+.day{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:14px;margin:10px 0}.day:hover{border-color:#58a6ff}
+.day h2{color:#79c0ff;font-size:15px;margin-bottom:4px}.day p{color:#8b949e;font-size:12px;margin-bottom:8px}
+.tag{font-size:11px;padding:3px 8px;border-radius:12px;display:inline-block}
+.locked{background:#21262d;color:#8b949e}.current{background:#1f6feb33;color:#58a6ff}.done{background:#23863633;color:#3fb950}
+.links{margin-top:8px}.links a{color:#58a6ff;font-size:12px;text-decoration:none;margin-right:12px}.links a:hover{text-decoration:underline}
+.progress{background:#21262d;border-radius:6px;height:8px;margin:15px 0;overflow:hidden}.bar{height:100%;background:linear-gradient(90deg,#238636,#3fb950);border-radius:6px;width:0%}
+.footer{text-align:center;color:#484f58;font-size:11px;margin-top:30px}</style></head><body>
+<h1>🚀 Hoss Bootcamp</h1><p class="sub">7-Day AI Director Sprint — Home Base</p>
+<div class="progress"><div class="bar"></div></div>
 
-<div class="progress"><div class="bar" id="bar"></div></div>
-
-<div class="day"><h2>Day 0 — Baseline Check</h2><p>Where are you now? Quick assessment, no pressure.</p><span class="status current">START HERE</span><div class="links"><a href="/hoss-bootcamp/day0/index.html">📝 Assessment</a></div></div>
-
-<div class="day"><h2>Day 1 — AI Director Toolkit</h2><p>Terminal basics, Git, VS Code, first API call.</p><span class="status locked">🔒 Locked</span><div class="links"><a href="#" style="color:#484f58">📝 Assessment</a> <a href="#" style="color:#484f58">📋 Cheat Sheet</a></div></div>
-
-<div class="day"><h2>Day 2 — Architecture & System Design</h2><p>How to think about systems, components, data flow.</p><span class="status locked">🔒 Locked</span></div>
-
-<div class="day"><h2>Day 3 — Backend Basics</h2><p>APIs, databases, server logic.</p><span class="status locked">🔒 Locked</span></div>
-
-<div class="day"><h2>Day 4 — Frontend Basics</h2><p>HTML/CSS/JS, connecting to your backend.</p><span class="status locked">🔒 Locked</span></div>
-
-<div class="day"><h2>Day 5 — DevOps & Deployment</h2><p>CI/CD, hosting, domains, going live.</p><span class="status locked">🔒 Locked</span></div>
-
-<div class="day"><h2>Day 6 — AI Agents</h2><p>Building your first AI-powered tool.</p><span class="status locked">🔒 Locked</span></div>
-
-<div class="day"><h2>Day 7 — Capstone Project</h2><p>Put it all together. Ship something real.</p><span class="status locked">🔒 Locked</span></div>
-
+<div class="day"><h2>Day 0 — Baseline Check</h2><p>Where are you now? Quick check, no pressure.</p><span class="tag current">START HERE</span><div class="links"><a href="day0/index.html">📝 Warm-Up</a></div></div>
+<div class="day"><h2>Day 1 — AI Director Toolkit</h2><p>Terminal, Git, VS Code, first API call, bug fix, real tool.</p><span class="tag locked">🔒 Locked</span></div>
+<div class="day"><h2>Day 2 — Architecture & System Design</h2><p>Components, data flow, system thinking.</p><span class="tag locked">🔒 Locked</span></div>
+<div class="day"><h2>Day 3 — Backend Basics</h2><p>APIs, databases, server logic.</p><span class="tag locked">🔒 Locked</span></div>
+<div class="day"><h2>Day 4 — Frontend Basics</h2><p>HTML/CSS/JS, connecting to your backend.</p><span class="tag locked">🔒 Locked</span></div>
+<div class="day"><h2>Day 5 — DevOps & Deployment</h2><p>CI/CD, hosting, going live.</p><span class="tag locked">🔒 Locked</span></div>
+<div class="day"><h2>Day 6 — AI Agents</h2><p>Building your first AI-powered tool.</p><span class="tag locked">🔒 Locked</span></div>
+<div class="day"><h2>Day 7 — Capstone Project</h2><p>Put it all together. Ship something real.</p><span class="tag locked">🔒 Locked</span></div>
 <div class="footer">MentorBot · AI Director Sprint · 2026</div>
 </body></html>
