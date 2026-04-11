@@ -1,13 +1,30 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Day 0 — What Do You Know So Far?</title>
-<style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:system-ui;background:#0d1117;color:#e6edf3;padding:20px;max-width:650px;margin:auto}
-h1{color:#58a6ff;font-size:20px;margin-bottom:3px}h2{color:#8b949e;font-size:13px;font-weight:normal;margin-bottom:15px}
-.q{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:12px;margin:8px 0}h3{color:#79c0ff;font-size:13px;margin-bottom:6px}p{font-size:12px;margin-bottom:6px;color:#c9d1d9}
-label{display:block;padding:3px 0;cursor:pointer;font-size:12px}input[type=radio],input[type=checkbox]{margin-right:8px}
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui;background:#0d1117;color:#e6edf3;padding:20px;max-width:650px;margin:auto}
+h1{color:#58a6ff;font-size:20px;margin-bottom:3px}
+h2{color:#8b949e;font-size:13px;font-weight:normal;margin-bottom:15px}
+.q{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:12px;margin:8px 0}
+h3{color:#79c0ff;font-size:13px;margin-bottom:6px}
+p{font-size:12px;margin-bottom:6px;color:#c9d1d9}
+label{display:block;padding:3px 0;cursor:pointer;font-size:12px}
+input[type=radio],input[type=checkbox]{margin-right:8px}
 textarea{background:#0d1117;color:#e6edf3;border:1px solid #30363d;padding:8px;border-radius:4px;width:100%;resize:vertical;font-size:12px}
-.cc{color:#8b949e;font-size:10px;text-align:right}button{background:#238636;color:#fff;border:none;padding:10px 24px;border-radius:6px;font-size:14px;cursor:pointer;margin-top:15px;width:100%}
-button:hover{background:#2ea043}.result{display:none;text-align:center;padding:30px 20px}
-.r-icon{font-size:40px;margin-bottom:10px}.r-title{color:#3fb950;font-size:18px;margin-bottom:8px}.r-sub{color:#8b949e;font-size:13px}</style></head><body>
+.cc{color:#8b949e;font-size:10px;text-align:right}
+button{background:#238636;color:#fff;border:none;padding:10px 24px;border-radius:6px;font-size:14px;cursor:pointer;margin-top:15px;width:100%}
+button:hover{background:#2ea043}
+.result{display:none;text-align:center;padding:30px 20px}
+.r-icon{font-size:40px;margin-bottom:10px}
+.r-title{color:#3fb950;font-size:18px;margin-bottom:8px}
+.r-sub{color:#8b949e;font-size:13px}
+</style>
+</head>
+<body>
 <h1>Day 0 — What Do You Know So Far?</h1>
 <h2>No timer. No pressure. Honest answers only.</h2>
 
@@ -36,7 +53,7 @@ button:hover{background:#2ea043}.result{display:none;text-align:center;padding:3
 <label><input type="checkbox" name="q4" value="5"> /init</label></div>
 
 <div class="q"><h3>Q5. Multiple Choice</h3><p>Why would you run /compact during a long coding session with Claude Code?</p>
-<label><input type="radio" name="q5" value="A"> A. To save the file to GitHub automatically</label>
+<label><input type="radio" name="q5" value="A"> A. To save a file to GitHub automatically</label>
 <label><input type="radio" name="q5" value="B"> B. To reduce context window usage so Claude stays accurate and focused</label>
 <label><input type="radio" name="q5" value="C"> C. To restart the terminal session</label>
 <label><input type="radio" name="q5" value="D"> D. To run your project tests</label></div>
@@ -56,13 +73,26 @@ button:hover{background:#2ea043}.result{display:none;text-align:center;padding:3
 <label><input type="radio" name="q8" value="D"> D. Running your existing test suite</label></div>
 
 <button onclick="submit()">Submit Answers</button>
-<div class="result" id="result"><div class="r-icon">✅</div><div class="r-title">Answers received!</div><div class="r-sub">Close this tab and go back to Discord.<br>I'm reading your answers now 👀</div></div>
+<div class="result" id="result">
+<div class="r-icon">✅</div>
+<div class="r-title">Answers received!</div>
+<div class="r-sub">Close this tab and go back to Discord.<br>I'm reading your answers now 👀</div>
+</div>
 
 <script>
-const WH='https://discord.com/api/webhooks/1492247082663153778/BPklT8BQdkcTo8SUdzNLdHM4bvw5-uyR0WjZcPVcFqSKiI7mHo4zsdL2nYWTYiZc6it8';
+const WH='https://discord.com/api/webhooks/1492507919915421848/5O437aLZANRtYfwT7KSx9hvfQIGryo1bx6Ov6PoTOxfckScu-kdYRH_Mr5GVyXIEiSAy';
+
 function submit(){
-let a=[];let q1=document.querySelector('input[name=q1]:checked');let q2=document.querySelector('input[name=q2]:checked');let q3=document.querySelector('input[name=q3]:checked');
-let q4=[...document.querySelectorAll('input[name=q4]:checked')].map(c=>parseInt(c.value));let q5=document.querySelector('input[name=q5]:checked');let q6t=document.getElementById('q6').value;let q7=document.querySelector('input[name=q7]:checked');let q8=document.querySelector('input[name=q8]:checked');
+let a=[];
+let q1=document.querySelector('input[name=q1]:checked');
+let q2=document.querySelector('input[name=q2]:checked');
+let q3=document.querySelector('input[name=q3]:checked');
+let q4=[...document.querySelectorAll('input[name=q4]:checked')].map(c=>parseInt(c.value));
+let q5=document.querySelector('input[name=q5]:checked');
+let q6t=document.getElementById('q6').value;
+let q7=document.querySelector('input[name=q7]:checked');
+let q8=document.querySelector('input[name=q8]:checked');
+
 a.push({q:1,type:'choice',selected:q1?q1.value:null,correct:'B',pass:q1&&q1.value==='B'});
 a.push({q:2,type:'yesno',selected:q2?q2.value:null});
 a.push({q:3,type:'choice',selected:q3?q3.value:null,correct:'B',pass:q3&&q3.value==='B'});
@@ -71,6 +101,12 @@ a.push({q:5,type:'choice',selected:q5?q5.value:null,correct:'B',pass:q5&&q5.valu
 a.push({q:6,type:'text',answer:q6t,char_count:q6t.length});
 a.push({q:7,type:'yesno',selected:q7?q7.value:null});
 a.push({q:8,type:'choice',selected:q8?q8.value:null,correct:'C',pass:q8&&q8.value==='C'});
-document.getElementById('result').style.display='block';document.querySelector('button').style.display='none';
-fetch(WH,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({student:'Hoss',day:0,type:'warmup',timestamp:new Date().toISOString(),answers:a})});}
-</script></body></html>
+
+document.getElementById('result').style.display='block';
+document.querySelector('button').style.display='none';
+
+fetch(WH,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({student:'Hoss',day:0,type:'warmup',timestamp:new Date().toISOString(),answers:a})});
+}
+</script>
+</body>
+</html>
