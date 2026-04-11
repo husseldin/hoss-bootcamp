@@ -27,13 +27,14 @@ header .sub{color:#8b949e;font-size:12px;margin-top:4px}
 .q-row{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:12px;margin:6px 0}
 .q-row .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
 .q-row .head .num{color:#8b949e;font-size:10px;text-transform:uppercase;letter-spacing:1px}
-.q-row .head .badge{font-size:10px;padding:2px 8px;border-radius:10px}
-.badge-pass{background:#23863633;color:#3fb950}
-.badge-fail{background:#f8514933;color:#f85149}
+.badge-p{background:#23863633;color:#3fb950;font-size:10px;padding:2px 8px;border-radius:10px}
+.badge-f{background:#f8514933;color:#f85149;font-size:10px;padding:2px 8px;border-radius:10px}
 .q-row .question{color:#c9d1d9;font-size:12px;font-weight:600;margin-bottom:4px}
-.q-row .your-answer{color:#8b949e;font-size:11px}
-.q-row .correct-answer{color:#3fb950;font-size:11px}
-.q-row .explanation{color:#58a6ff;font-size:11px;margin-top:4px;font-style:italic}
+.q-row .detail{color:#8b949e;font-size:11px;margin:2px 0}
+.q-row .correct{color:#3fb950}
+.q-row .explain{color:#58a6ff;font-size:11px;margin-top:4px;font-style:italic;padding-top:4px;border-top:1px solid #21262d}
+.q-row.wrong{border-left:3px solid #f85149}
+.q-row.right{border-left:3px solid #3fb950}
 footer{text-align:center;padding:20px 0;color:#484f58;font-size:10px}
 footer a{color:#58a6ff}
 </style>
@@ -41,58 +42,64 @@ footer a{color:#58a6ff}
 <body>
 
 <div class="locked" id="lockedMsg" style="display:none">
-<h2>🔒 No Results Yet</h2>
+<h2>No Results Yet</h2>
 <p>Complete the Day 0 assessment first.</p>
-<p style="margin-top:15px"><a href="assessment.html">← Take Assessment</a></p>
+<p style="margin-top:15px"><a href="assessment.html">Take Assessment</a></p>
 </div>
 
 <div id="resultsContent" style="display:none">
 <header>
-<h1>✅ Day 0 Baseline Complete</h1>
-<div class="sub">Baseline assessment — no pass/fail, just a starting point</div>
+<h1>Day 0 Baseline Complete</h1>
+<div class="sub">Baseline assessment - no pass/fail, just a starting point</div>
 </header>
 
 <div class="score-wrap">
 <div class="score-circle" id="scoreCircle">--</div>
 <div class="score-label">
 <div class="big" id="scoreText">--</div>
-<div class="dim" id="scoreSub">Loading...</div>
+<div class="dim" id="scoreSub">correct answers</div>
 </div>
 </div>
 
 <div class="topics" id="topicsWrap"></div>
-
-<div class="motivation" id="motivationMsg">Loading your personalized feedback...</div>
-
+<div class="motivation" id="motivationMsg"></div>
 <div id="answersList"></div>
 </div>
 
 <footer>
-<a href="../">← Home</a> · <a href="../day1/index.html">Day 1 Schedule →</a>
+<a href="../">Home</a>
 </footer>
 
 <script>
-// Question definitions for display
-const QS={
-1:{q:"What does the /plan command do in Claude Code?",opts:{A:"Opens a project calendar",B:"Asks Claude to think through an approach before writing code",C:"Creates a new GitHub repository",D:"Lists all available slash commands"}},
-2:{q:"Have you successfully run Claude Code CLI?",yes:"Yes, ran it",no:"Not yet"},
-3:{q:"What is CLAUDE.md used for?",opts:{A:"Storing API keys",B:"Persistent project memory that survives between sessions",C:"Required config for GitHub",D:"Markdown version of README"}},
-4:{q:"Which are real Claude Code slash commands?",opts:{0:"/plan",1:"/deploy",2:"/compact",3:"/search",4:"/clear",5:"/init"}},
-5:{q:"Why run /compact during a long session?",opts:{A:"Save file to GitHub",B:"Reduce context window so Claude stays accurate",C:"Restart terminal",D:"Run tests"}},
-6:{q:"In one sentence — what does it mean to give Claude Code 'context'?"},
-7:{q:"Did you create/update a CLAUDE.md file?",yes:"Yes",no:"No"},
-8:{q:"What does /init do in a new project?",opts:{A:"Install Node.js deps",B:"Create GitHub repo",C:"Analyze project and generate CLAUDE.md",D:"Run test suite"}}
+const QS = {
+  1: "What does the /plan command do in Claude Code?",
+  2: "Have you successfully run Claude Code CLI?",
+  3: "What is CLAUDE.md used for?",
+  4: "Which are real Claude Code slash commands?",
+  5: "Why run /compact during a long session?",
+  6: "What does it mean to give Claude Code 'context'?",
+  7: "Did you create/update a CLAUDE.md file?",
+  8: "What does /init do in a new project?"
 };
-
-const EXPLAIN={
-1:"The /plan command tells Claude to research and think before writing code — like a senior dev planning before coding.",
-2:"Running the CLI is hands-on practice. If not yet — that's Day 1!",
-3:"CLAUDE.md is Claude's memory file. It reads it every session to understand your project rules and conventions.",
-4:"Real commands: /plan, /compact, /clear, /init. /deploy and /search don't exist as built-in slash commands.",
-5:"Long conversations fill Claude's context window. /compact summarizes the chat so Claude stays sharp.",
-6:"Context means giving Claude information about your project — what it does, your conventions, what you're trying to build.",
-7:"Creating CLAUDE.md is a key practice. We'll do it in Day 1.",
-8:"/init analyzes your entire project and auto-generates a CLAUDE.md with project-specific knowledge."
+const CORRECT = {
+  1: "B - Asks Claude to think through an approach before writing code",
+  2: "Yes or No - self-reported",
+  3: "B - Claude Code's persistent project memory",
+  4: "/plan, /compact, /clear, /init (not /deploy or /search)",
+  5: "B - Reduce context window usage so Claude stays accurate",
+  6: "Text answer - evaluated by AI mentor",
+  7: "Yes or No - self-reported",
+  8: "C - Analyze your project and generate a CLAUDE.md"
+};
+const WHY = {
+  1: "/plan tells Claude to research first, like a senior dev planning before coding.",
+  2: "Hands-on practice matters. If not yet, Day 1 covers it!",
+  3: "CLAUDE.md is Claude's memory. It reads it every session for project context.",
+  4: "Real: /plan, /compact, /clear, /init. /deploy and /search don't exist as built-in commands.",
+  5: "Long chats fill Claude's context. /compact summarizes so Claude stays sharp.",
+  6: "Context = giving Claude info about your project so it understands what you're building.",
+  7: "Creating CLAUDE.md is key. We'll do it in Day 1.",
+  8: "/init scans your project and auto-generates a CLAUDE.md with project knowledge."
 };
 
 fetch('../api/status.json?'+Date.now())
@@ -104,25 +111,50 @@ fetch('../api/status.json?'+Date.now())
     return;
   }
   document.getElementById('resultsContent').style.display='block';
-
-  // Score
   const pct=s.score||0;
   document.getElementById('scoreCircle').textContent=pct+'%';
-  document.getElementById('scoreText').textContent=s.correctAnswers+'/'+s.totalQuestions;
-  document.getElementById('scoreSub').textContent='correct answers';
-
+  document.getElementById('scoreText').textContent=(s.correctAnswers||'?')+'/'+(s.totalQuestions||'?');
+  
   // Topics
   let tags='';
-  if(s.strongTopics) s.strongTopics.forEach(t=>tags+='<span class="tag tag-s">💪 '+t+'</span>');
-  if(s.weakTopics) s.weakTopics.forEach(t=>tags+='<span class="tag tag-w">🔍 '+t+'</span>');
+  if(s.strongTopics) s.strongTopics.forEach(t=>tags+='<span class="tag tag-s">Strong: '+t+'</span> ');
+  if(s.weakTopics) s.weakTopics.forEach(t=>tags+='<span class="tag tag-w">Review: '+t+'</span> ');
   document.getElementById('topicsWrap').innerHTML=tags;
 
   // Motivation
   let msg='';
-  if(pct>=80) msg='Great job Hoss! 🎉 You already know your stuff. Day 1 will sharpen what you know and fill the gaps. Let\'s go!';
-  else if(pct>=50) msg='Solid foundation! 👍 You\'ve got the basics down. Day 1 will strengthen the areas you missed — that\'s exactly what the bootcamp is for.';
-  else msg='Everyone starts somewhere! 💪 Day 1 is designed to teach you everything from scratch. You\'ll pick it up faster than you think. Let\'s build!';
+  if(pct>=80) msg='Great job! You already know your stuff. Day 1 will sharpen what you know and fill the gaps. Let\'s go!';
+  else if(pct>=50) msg='Solid foundation! Day 1 will strengthen the areas you missed - that\'s exactly what the bootcamp is for.';
+  else msg='Everyone starts somewhere! Day 1 is designed to teach you everything from scratch. You\'ll pick it up faster than you think!';
   document.getElementById('motivationMsg').textContent=msg;
+
+  // Load detailed answers from results API
+  return fetch('../api/results-day0.json?'+Date.now()).then(r=>r.json()).then(r=>({s,r}));
+})
+.then(data=>{
+  if(!data||!data.r||!data.r.answers) return;
+  const answers=data.r.answers;
+  let html='';
+  answers.forEach(a=>{
+    const qText=QS[a.q]||('Question '+a.q);
+    const isPass=a.pass!==false;
+    const cls=isPass?'right':'wrong';
+    const badge=isPass?'<span class="badge-p">Correct</span>':'<span class="badge-f">Wrong</span>';
+    
+    let yourAns='';
+    if(a.type==='choice') yourAns='Your answer: '+(a.selected||'No answer');
+    else if(a.type==='yesno') yourAns='Your answer: '+(a.selected||'No answer');
+    else if(a.type==='multi') yourAns='Your answer: '+(a.selected?a.selected.join(', '):'None');
+    else if(a.type==='text') yourAns='Your answer: "'+(a.answer||'No answer')+'"';
+    
+    let correctAns='';
+    if(a.correct) correctAns='<div class="detail correct">Correct: '+CORRECT[a.q]+'</div>';
+    
+    const why=WHY[a.q]?'<div class="explain">Why: '+WHY[a.q]+'</div>':'';
+
+    html+='<div class="q-row '+cls+'"><div class="head"><span class="num">Q'+a.q+' ('+a.type+')</span>'+badge+'</div><div class="question">'+qText+'</div><div class="detail">'+yourAns+'</div>'+correctAns+why+'</div>';
+  });
+  document.getElementById('answersList').innerHTML=html;
 });
 </script>
 </body>
