@@ -119,9 +119,9 @@ fetch('../api/status.json?'+Date.now())
 
   // Motivation
   let msg='';
-  if(pct>=80) msg='برافو عليك يا حوس! 🎉 You already know your stuff. Day 1 will sharpen what you know and fill the gaps. Let\'s go!';
-  else if(pct>=50) msg='أساسياتك كويسة! 👍 You\'ve got a solid foundation. Day 1 will strengthen the areas you missed. No worries — that\'s what the bootcamp is for!';
-  else msg='يلا نبدأ من الأول! 💪 Everyone starts somewhere. Day 1 is designed to teach you everything from scratch. You\'ll be surprised how fast you pick it up!';
+  if(pct>=80) msg='Great job Hoss! 🎉 You already know your stuff. Day 1 will sharpen what you know and fill the gaps. Let\'s go!';
+  else if(pct>=50) msg='Solid foundation! 👍 You\'ve got the basics down. Day 1 will strengthen the areas you missed — that\'s exactly what the bootcamp is for.';
+  else msg='Everyone starts somewhere! 💪 Day 1 is designed to teach you everything from scratch. You\'ll pick it up faster than you think. Let\'s build!';
   document.getElementById('motivationMsg').textContent=msg;
 });
 </script>
