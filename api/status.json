@@ -1,26 +1,15 @@
 {
   "student": "Hoss",
-  "lastUpdated": "2026-04-11T16:05:00Z",
-  "currentDay": 1,
+  "lastUpdated": "2026-04-11T16:40:00Z",
+  "currentDay": 0,
   "days": {
-    "0": {
-      "status": "completed",
-      "label": "Baseline Check",
-      "assessmentTaken": true,
-      "score": 8,
-      "totalQuestions": 8,
-      "correctAnswers": 8,
-      "completedAt": "2026-04-11T16:00:00Z",
-      "weakTopics": [],
-      "strongTopics": ["AI fundamentals", "context awareness", "multi-select reasoning"],
-      "blocks": []
-    },
-    "1": {"status": "active", "label": "AI Director Toolkit", "blocks": ["CLI Ritual", "Terminal Essentials", "Git & GitHub", "First API Call", "Debugging Basics"]},
-    "2": {"status": "locked", "label": "Architecture & System Design", "blocks": []},
-    "3": {"status": "locked", "label": "Backend Basics", "blocks": []},
-    "4": {"status": "locked", "label": "Frontend Basics", "blocks": []},
-    "5": {"status": "locked", "label": "DevOps & Deployment", "blocks": []},
-    "6": {"status": "locked", "label": "Docker & CI/CD", "blocks": []},
-    "7": {"status": "locked", "label": "Capstone Project", "blocks": []}
+    "0": {"status": "active", "label": "Baseline Check", "assessmentTaken": false, "score": null, "totalQuestions": 8, "correctAnswers": null, "completedAt": null, "weakTopics": [], "strongTopics": []},
+    "1": {"status": "locked", "label": "AI Director Toolkit"},
+    "2": {"status": "locked", "label": "Architecture & System Design"},
+    "3": {"status": "locked", "label": "Backend Basics"},
+    "4": {"status": "locked", "label": "Frontend Basics"},
+    "5": {"status": "locked", "label": "DevOps & Deployment"},
+    "6": {"status": "locked", "label": "Docker & CI/CD"},
+    "7": {"status": "locked", "label": "Capstone Project"}
   }
 }
