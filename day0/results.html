@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Day 0 — Results</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui;background:#0d1117;color:#e6edf3;padding:20px;max-width:650px;margin:auto}
+h1{text-align:center;color:#3fb950;font-size:22px;margin-bottom:5px}
+h2{text-align:center;color:#8b949e;font-size:13px;font-weight:normal;margin-bottom:20px}
+.score-circle{width:100px;height:100px;border-radius:50%;background:#23863633;color:#3fb950;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:bold;margin:0 auto 20px}
+.row{background:#161b22;border:1px solid #30363d;border-radius:6px;padding:10px 12px;margin:6px 0;display:flex;justify-content:space-between;align-items:center;font-size:12px}
+.row .q{color:#c9d1d9}.row .a{color:#8b949e}
+.row.pass{border-left:3px solid #3fb950}.row.fail{border-left:3px solid #f85149}
+.tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;margin:2px}
+.tag-strong{background:#23863633;color:#3fb950}.tag-weak{background:#f0883e33;color:#f0883e}
+footer{text-align:center;padding:20px 0;color:#484f58;font-size:10px}
+footer a{color:#58a6ff}
+.locked{text-align:center;padding:60px 20px}
+.locked h2{color:#f0883e;font-size:18px;margin-bottom:10px}
+.locked p{color:#8b949e;font-size:13px}
+</style>
+</head>
+<body>
+<div class="locked" id="lockedMsg" style="display:none">
+<h2>🔒 Results Not Available</h2>
+<p>Complete the Day 0 assessment first.</p>
+<p style="margin-top:15px"><a href="assessment.html">← Take Assessment</a></p>
+</div>
+
+<div id="resultsContent">
+<h1>✅ Day 0 Baseline Complete</h1>
+<h2>Your results are loaded from the server</h2>
+<div class="score-circle" id="scoreCircle">--</div>
+<div id="strongTopics" style="text-align:center;margin-bottom:10px"></div>
+<div id="weakTopics" style="text-align:center;margin-bottom:20px"></div>
+<div id="answers"></div>
+</div>
+
+<footer>
+<a href="../">← Home</a> · <a href="../day1/index.html">Day 1 →</a>
+</footer>
+
+<script>
+fetch('../api/status.json?'+Date.now())
+.then(r=>r.json())
+.then(d=>{
+  const s=d.days['0'];
+  if(!s||s.status!=='completed'){
+    document.getElementById('resultsContent').style.display='none';
+    document.getElementById('lockedMsg').style.display='block';
+    return;
+  }
+  document.getElementById('scoreCircle').textContent=s.score+'%';
+  if(s.strongTopics&&s.strongTopics.length){
+    document.getElementById('strongTopics').innerHTML='<span class="tag tag-strong">💪 Strong: '+s.strongTopics.join(', ')+'</span>';
+  }
+  if(s.weakTopics&&s.weakTopics.length){
+    document.getElementById('weakTopics').innerHTML='<span class="tag tag-weak">🔍 Review: '+s.weakTopics.join(', ')+'</span>';
+  }
+});
+</script>
+</body>
+</html>
