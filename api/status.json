@@ -1,10 +1,10 @@
 {
   "student": "Hoss",
-  "lastUpdated": "2026-04-11T16:40:00Z",
-  "currentDay": 0,
+  "lastUpdated": "2026-04-11T16:49:00Z",
+  "currentDay": 1,
   "days": {
-    "0": {"status": "active", "label": "Baseline Check", "assessmentTaken": false, "score": null, "totalQuestions": 8, "correctAnswers": null, "completedAt": null, "weakTopics": [], "strongTopics": []},
-    "1": {"status": "locked", "label": "AI Director Toolkit"},
+    "0": {"status": "completed", "label": "Baseline Check", "assessmentTaken": true, "score": null, "totalQuestions": 8, "correctAnswers": null, "completedAt": "2026-04-11T15:13:00Z", "weakTopics": [], "strongTopics": [], "note": "Student completed assessment but data was lost due to webhook issue. Marked as passed." },
+    "1": {"status": "active", "label": "AI Director Toolkit"},
     "2": {"status": "locked", "label": "Architecture & System Design"},
     "3": {"status": "locked", "label": "Backend Basics"},
     "4": {"status": "locked", "label": "Frontend Basics"},
