@@ -6,22 +6,33 @@
 <title>Day 1 — AI Director Toolkit</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:system-ui;background:#0d1117;color:#e6edf3;padding:20px;max-width:700px;margin:auto}
-h1{color:#58a6ff;font-size:20px;margin-bottom:3px}
-h2{color:#8b949e;font-size:13px;font-weight:normal;margin-bottom:20px}
-.block{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:16px;margin:12px 0}
+body{font-family:system-ui;background:#0d1117;color:#e6edf3;padding:20px;max-width:750px;margin:auto}
+header{text-align:center;padding:20px 0 10px}
+header h1{color:#58a6ff;font-size:22px}
+header .sub{color:#8b949e;font-size:12px;margin-top:4px}
+.time-bar{background:#1f6feb15;border-left:3px solid #58a6ff;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:13px;color:#c9d1d9}
+.time-bar strong{color:#58a6ff}
+.block{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:16px;margin:10px 0}
+.block-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
 .block-num{color:#8b949e;font-size:10px;text-transform:uppercase;letter-spacing:1px}
-.block-title{color:#e6edf3;font-size:16px;font-weight:600;margin:4px 0 8px}
+.block-time{color:#f0883e;font-size:11px}
+.block-title{color:#e6edf3;font-size:15px;font-weight:600;margin:4px 0 6px}
 .block-desc{color:#c9d1d9;font-size:12px;line-height:1.5;margin-bottom:10px}
 .block-steps{list-style:none;padding:0}
-.block-steps li{padding:4px 0 4px 20px;font-size:12px;color:#c9d1d9;position:relative}
+.block-steps li{padding:3px 0 3px 18px;font-size:12px;color:#c9d1d9;position:relative}
 .block-steps li::before{content:'→';position:absolute;left:0;color:#58a6ff}
 .resources{background:#21262d;border-radius:6px;padding:10px;margin-top:8px}
+.resources strong{color:#8b949e;font-size:10px;text-transform:uppercase}
 .resources a{color:#58a6ff;text-decoration:none;font-size:11px;display:block;padding:2px 0}
-.resources a::before{content:'🔗 ';color:#484f58}
-.gated{opacity:0.3;pointer-events:none}
-.gate-msg{color:#f0883e;font-size:11px;font-style:italic}
+.resources a::before{content:'🔗 '}
+.tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;margin:2px}
+.tag-read{background:#58a6ff22;color:#58a6ff}
+.tag-do{background:#23863633;color:#3fb950}
+.tag-quiz{background:#f0883e33;color:#f0883e}
 footer{text-align:center;padding:20px 0;color:#484f58;font-size:10px}
+footer a{color:#58a6ff}
+.gated{text-align:center;padding:40px;color:#f0883e}
+.gated a{color:#58a6ff}
 </style>
 </head>
 <body>
@@ -29,59 +40,156 @@ footer{text-align:center;padding:20px 0;color:#484f58;font-size:10px}
 fetch('../api/status.json?'+Date.now())
 .then(r=>r.json())
 .then(d=>{
-  const s=d.days['1'];
-  if(!s||s.status==='locked'){
-    document.body.innerHTML='<div style="text-align:center;padding:60px"><h2 style="color:#f0883e">🔒 Day 1 is locked</h2><p style="color:#8b949e;margin-top:10px">Complete Day 0 assessment first.</p><p style="margin-top:15px"><a href="../" style="color:#58a6ff">← Back to Home</a></p></div>';
+  if(!d.days['1']||d.days['1'].status==='locked'){
+    document.body.innerHTML='<div class="gated"><h2>Day 1 is locked</h2><p style="color:#8b949e;margin:10px 0">Complete Day 0 first.</p><a href="../">Home</a></div>';
   }
 });
 </script>
 
-<h1>📡 Day 1 — AI Director Toolkit</h1>
-<h2>Terminal, Git, VS Code, first API call, debugging</h2>
+<header>
+<h1>Day 1 — AI Director Toolkit</h1>
+<div class="sub">Terminal, Git, VS Code, Claude Code, API calls, debugging</div>
+</header>
 
-<div class="block">
-<div class="block-num">Block 1 of 2 — Reading & Setup</div>
-<div class="block-title">🖥️ Your CLI Toolkit</div>
-<div class="block-desc">
-Get comfortable with the tools you'll use every day as an AI Director. No prior experience needed — we'll build from scratch.
-</div>
-<ol class="block-steps">
-<li><strong>Terminal basics:</strong> Navigate directories (cd, ls, pwd, mkdir). Create and move files (touch, mv, cp, rm).</li>
-<li><strong>Git essentials:</strong> Clone a repo, make changes, commit, push. Understand branches at a high level.</li>
-<li><strong>VS Code setup:</strong> Open a project folder, use integrated terminal, install one extension.</li>
-<li><strong>Claude Code CLI:</strong> Install, run /init in a project, edit CLAUDE.md, use /plan and /compact.</li>
-</ol>
-<div class="resources">
-<strong style="color:#8b949e;font-size:10px">RESOURCES:</strong>
-<a href="https://claude.nagdy.me/learn/slash-commands" target="_blank">Claude Code Slash Commands (Interactive)</a>
-<a href="https://claude.nagdy.me/learn/memory" target="_blank">Claude Code Memory & CLAUDE.md (Interactive)</a>
-<a href="https://claude.nagdy.me/reference" target="_blank">Claude Code Cheat Sheet (Reference)</a>
-<a href="https://docs.anthropic.com/en/docs/claude-code/overview" target="_blank">Official Claude Code Docs</a>
-</div>
+<div class="time-bar">
+⏱ <strong>Full day: ~8 hours</strong> · 30% reading · 70% hands-on practice<br>
+Work through each block in order. Click Done in Discord when finished.
 </div>
 
 <div class="block">
-<div class="block-num">Block 2 of 2 — Practice & API Call</div>
-<div class="block-title">⚡ Your First API Call</div>
-<div class="block-desc">
-Put your tools to work. Make a real API call, see the response, debug an error.
-</div>
+<div class="block-header"><span class="block-num">Block 0 — CLI Ritual (every day)</span><span class="block-time">⏱ 30 min</span></div>
+<div class="block-title">🖥️ Daily Setup with Claude Code</div>
+<div class="block-desc">Set up your workspace the way a professional AI Director does — every single day.</div>
 <ol class="block-steps">
-<li><strong>Install curl</strong> (or verify it's installed): <code style="color:#79c0ff">curl --version</code></li>
-<li><strong>Make your first API call:</strong> <code style="color:#79c0ff">curl https://api.github.com/users/github</code></li>
-<li><strong>Read the JSON response:</strong> Identify the structure (keys, values, nested objects).</li>
-<li><strong>Debug a broken call:</strong> Try <code style="color:#79c0ff">curl https://api.github.com/nonexistent</code> — what status code do you get?</li>
-<li><strong>Use Claude Code:</strong> Ask Claude to explain the API response. Try <code style="color:#79c0ff">/plan how to parse JSON from an API</code>.</li>
+<li>Install Claude Code CLI (if not already): <code>npm install -g @anthropic-ai/claude-code</code></li>
+<li>Create a project folder: <code>mkdir ai-director && cd ai-director</code></li>
+<li>Run <code>claude</code> to start an interactive session</li>
+<li>Run <code>/init</code> — Claude analyzes your project and generates CLAUDE.md</li>
+<li>Review CLAUDE.md: add your name, project goal, preferred language</li>
+<li>Run <code>/plan</code> to practice planning mode before any code</li>
+<li>End of day ritual: <code>/compact</code> → commit your work</li>
 </ol>
 <div class="resources">
-<strong style="color:#8b949e;font-size:10px">RESOURCES:</strong>
-<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" target="_blank">HTTP Status Codes (MDN)</a>
+<strong>Resources:</strong>
+<a href="https://docs.anthropic.com/en/docs/claude-code/overview" target="_blank">Official Claude Code Documentation</a>
+<a href="https://claude.nagdy.me/learn/slash-commands" target="_blank">Slash Commands (Interactive)</a>
+</div>
+<span class="tag tag-do">Practice</span>
+</div>
+
+<div class="block">
+<div class="block-header"><span class="block-num">Block 1 — Reading</span><span class="block-time">⏱ 2 hrs</span></div>
+<div class="block-title">📚 CLI & Git Fundamentals</div>
+<div class="block-desc">Build your foundation. Read, watch, and understand the core tools.</div>
+<ol class="block-steps">
+<li><strong>Terminal basics (45 min):</strong> Navigation (cd, ls, pwd), file operations (touch, mkdir, cp, mv, rm), viewing files (cat, less, head, tail), piping (|, grep, sort)</li>
+<li><strong>Git essentials (45 min):</strong> What is version control, clone/add/commit/push/pull, branches (create, switch, merge), resolving merge conflicts, .gitignore</li>
+<li><strong>VS Code setup (15 min):</strong> Open project (code .), integrated terminal (Ctrl+`), command palette (Ctrl+Shift+P), essential extensions (GitLens, Thunder Client)</li>
+<li><strong>Claude Code deep dive (15 min):</strong> /plan, /compact, /clear, /init, CLAUDE.md structure, context management</li>
+</ol>
+<div class="resources">
+<strong>Resources:</strong>
+<a href="https://claude.nagdy.me/learn/memory" target="_blank">Claude Code Memory & CLAUDE.md</a>
+<a href="https://claude.nagdy.me/reference" target="_blank">Claude Code Cheat Sheet</a>
+<a href="https://git-scm.com/book/en/v2" target="_blank">Pro Git Book (free)</a>
+<a href="https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Command_line" target="_blank">MDN: Command Line Basics</a>
+<a href="https://docs.anthropic.com/en/docs/claude-code/overview" target="_blank">Anthropic: Claude Code Overview</a>
+</div>
+<span class="tag tag-read">Reading</span>
+</div>
+
+<div class="block">
+<div class="block-header"><span class="block-num">Block 2 — Practice Task</span><span class="block-time">⏱ 2 hrs</span></div>
+<div class="block-title">⚡ Terminal & Git Hands-On</div>
+<div class="block-desc">Put theory into practice. Complete these tasks and submit screenshots.</div>
+<ol class="block-steps">
+<li><strong>Task 1:</strong> Create folder structure: <code>~/projects/ai-director/{src,docs,tests}</code></li>
+<li><strong>Task 2:</strong> Create files: README.md, .gitignore (add node_modules, .env)</li>
+<li><strong>Task 3:</strong> Initialize git repo, make first commit</li>
+<li><strong>Task 4:</strong> Create branch "feature/setup", add content to README.md, commit</li>
+<li><strong>Task 5:</strong> Merge branch back to main, push to GitHub</li>
+<li><strong>Task 6:</strong> Run <code>/init</code> in Claude Code, review generated CLAUDE.md, customize it</li>
+</ol>
+<div class="resources">
+<strong>Expected output to submit:</strong>
+Screenshot of: terminal showing git log, VS Code with project open, CLAUDE.md content
+</div>
+<span class="tag tag-do">Practice</span> <span class="tag tag-quiz">Upload Required</span>
+</div>
+
+<div class="block">
+<div class="block-header"><span class="block-num">Block 3 — Section Quiz</span><span class="block-time">⏱ 15 min</span></div>
+<div class="block-title">📝 Quick Check: CLI & Git</div>
+<div class="block-desc">3-5 questions to verify your understanding. No pass/fail — just feedback.</div>
+<span class="tag tag-quiz">Quiz</span>
+</div>
+
+<div class="block">
+<div class="block-header"><span class="block-num">Block 4 — Reading</span><span class="block-time">⏱ 1 hr</span></div>
+<div class="block-title">📚 APIs & HTTP Fundamentals</div>
+<div class="block-desc">Understand how software talks to software.</div>
+<ol class="block-steps">
+<li><strong>What is an API (20 min):</strong> Endpoints, requests, responses, JSON format</li>
+<li><strong>HTTP methods (15 min):</strong> GET, POST, PUT, DELETE — when to use each</li>
+<li><strong>Status codes (10 min):</strong> 200, 201, 400, 401, 403, 404, 500 — what they mean</li>
+<li><strong>Authentication (15 min):</strong> API keys, Bearer tokens, headers</li>
+</ol>
+<div class="resources">
+<strong>Resources:</strong>
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP" target="_blank">MDN: HTTP Docs</a>
+<a href="https://restfulapi.net/" target="_blank">REST API Tutorial</a>
 <a href="https://curl.se/docs/manual.html" target="_blank">curl Manual</a>
 </div>
+<span class="tag tag-read">Reading</span>
+</div>
+
+<div class="block">
+<div class="block-header"><span class="block-num">Block 5 — Practice Task</span><span class="block-time">⏱ 1.5 hrs</span></div>
+<div class="block-title">🌐 Your First API Calls</div>
+<div class="block-desc">Make real API calls, read responses, debug errors.</div>
+<ol class="block-steps">
+<li><strong>Task 1:</strong> <code>curl https://api.github.com/users/github</code> — read the JSON</li>
+<li><strong>Task 2:</strong> <code>curl https://api.github.com/nonexistent</code> — what status code?</li>
+<li><strong>Task 3:</strong> <code>curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/users/jacob</code></li>
+<li><strong>Task 4:</strong> Use Claude Code to write a script that calls an API and parses JSON</li>
+<li><strong>Task 5:</strong> Debug a broken API call (MentorBot will give you one with an error)</li>
+</ol>
+<div class="resources">
+<strong>Expected output to submit:</strong>
+Screenshot of: curl responses, your API script running, debugged error fix
+</div>
+<span class="tag tag-do">Practice</span> <span class="tag tag-quiz">Upload Required</span>
+</div>
+
+<div class="block">
+<div class="block-header"><span class="block-num">Block 6 — Section Quiz</span><span class="block-time">⏱ 15 min</span></div>
+<div class="block-title">📝 Quick Check: APIs & HTTP</div>
+<div class="block-desc">3-5 questions on API concepts. No pass/fail.</div>
+<span class="tag tag-quiz">Quiz</span>
+</div>
+
+<div class="block">
+<div class="block-header"><span class="block-num">Block 7 — Debugging Practice</span><span class="block-time">⏱ 1 hr</span></div>
+<div class="block-title">🐛 Debugging Mindset</div>
+<div class="block-desc">Learn the systematic approach to fixing anything.</div>
+<ol class="block-steps">
+<li><strong>The 5-step method:</strong> Read error → Isolate → Search → Fix one thing → Test</li>
+<li><strong>Practice:</strong> MentorBot gives you 3 broken commands — fix each one</li>
+<li><strong>Claude Code debugging:</strong> Use /plan to analyze errors, ask Claude to explain stack traces</li>
+</ol>
+<span class="tag tag-do">Practice</span>
+</div>
+
+<div class="block" style="border-color:#58a6ff55;background:#1f6feb08">
+<div class="block-header"><span class="block-num">Final — Day Assessment</span><span class="block-time">⏱ 20 min</span></div>
+<div class="block-title">📝 Day 1 Assessment</div>
+<div class="block-desc">20 questions covering all topics. 70% to pass. Timer starts when you open it.</div>
+<div class="block-desc"><strong>Only available after completing all blocks above.</strong></div>
+<span class="tag tag-quiz">Assessment</span>
 </div>
 
 <footer>
-Day 1 of 7 · AI Director Toolkit · <a href="../" style="color:#58a6ff">← Home</a>
+Day 1 of 7 · AI Director Toolkit · <a href="guidance.html">Guidance</a> · <a href="../">Home</a>
 </footer>
 </body>
 </html>
