@@ -141,8 +141,11 @@ function submit(){
   document.getElementById('result').style.display='block';
   document.getElementById('assessmentForm').style.display='none';
 
-  // Send to webhook
-  fetch(WH,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({student:'Hoss',day:0,type:'warmup',timestamp:new Date().toISOString(),answers:a})});
+  // Send to local logger (primary — always saves)
+  const payload={student:'Hoss',day:0,type:'warmup',timestamp:new Date().toISOString(),answers:a};
+  fetch('http://173.212.225.175:18800',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).catch(()=>{});
+  // Send to Discord webhook (secondary — for channel notification)
+  fetch(WH,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).catch(()=>{});
 }
 </script>
 </body>
