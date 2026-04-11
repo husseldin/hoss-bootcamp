@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Day 1 — Guidance</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui;background:#0d1117;color:#e6edf3;padding:20px;max-width:700px;margin:auto}
+h1{color:#58a6ff;font-size:18px;margin-bottom:15px}
+.section{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:14px;margin:10px 0}
+.section h3{color:#79c0ff;font-size:13px;margin-bottom:8px}
+.section p,.section li{color:#c9d1d9;font-size:12px;line-height:1.6}
+.section ul{padding-left:16px}
+.section a{color:#58a6ff}
+.tip{background:#1f6feb15;border-left:3px solid #58a6ff;padding:10px 14px;margin:8px 0;border-radius:0 6px 6px 0;font-size:12px;color:#c9d1d9}
+code{color:#79c0ff;background:#21262d;padding:1px 4px;border-radius:3px;font-size:11px}
+footer{text-align:center;padding:20px 0;color:#484f58;font-size:10px}
+</style>
+</head>
+<body>
+<script>
+fetch('../api/status.json?'+Date.now())
+.then(r=>r.json())
+.then(d=>{
+  if(!d.days['1']||d.days['1'].status==='locked'){
+    document.body.innerHTML='<div style="text-align:center;padding:60px"><h2 style="color:#f0883e">🔒 Locked</h2><p style="color:#8b949e;margin-top:10px">Complete Day 0 first.</p><p style="margin-top:15px"><a href="../" style="color:#58a6ff">← Home</a></p></div>';
+  }
+});
+</script>
+
+<h1>📚 Day 1 — Guidance & Resources</h1>
+
+<div class="section">
+<h3>🖥️ Terminal Crash Course</h3>
+<p>The terminal (also called command line, shell, CLI) is how you talk to your computer directly — no mouse, no clicking. Just text commands.</p>
+<ul>
+<li><code>pwd</code> — Where am I? (Print Working Directory)</li>
+<li><code>ls</code> — What's here? (List files)</li>
+<li><code>ls -a</code> — What's here INCLUDING hidden files?</li>
+<li><code>cd folder</code> — Go into a folder</li>
+<li><code>cd ..</code> — Go up one level</li>
+<li><code>mkdir project</code> — Create a new folder</li>
+<li><code>touch file.txt</code> — Create an empty file</li>
+<li><code>cat file.txt</code> — Show file contents</li>
+<li><code>rm file.txt</code> — Delete a file (careful!)</li>
+<li><code>cp file.txt copy.txt</code> — Copy a file</li>
+<li><code>mv file.txt newname.txt</code> — Move or rename</li>
+</ul>
+<div class="tip">💡 Tip: Use <code>↑</code> arrow to recall previous commands. Use <code>Tab</code> to auto-complete file names.</div>
+</div>
+
+<div class="section">
+<h3>🔀 Git Essentials</h3>
+<p>Git tracks changes to your code. Think of it as "undo on steroids" + collaboration.</p>
+<ul>
+<li><code>git clone URL</code> — Download a project</li>
+<li><code>git status</code> — What changed?</li>
+<li><code>git add .</code> — Stage all changes</li>
+<li><code>git commit -m "message"</code> — Save a snapshot</li>
+<li><code>git push</code> — Upload to GitHub</li>
+<li><code>git pull</code> — Download latest changes</li>
+<li><code>git branch</code> — List branches</li>
+<li><code>git checkout -b new-branch</code> — Create & switch to new branch</li>
+</ul>
+<div class="tip">💡 Key concept: A "branch" is a parallel version. "main" is the default. You create branches to work on features without breaking main.</div>
+</div>
+
+<div class="section">
+<h3>📝 VS Code Setup</h3>
+<ul>
+<li>Open a folder: <code>code .</code> in terminal</li>
+<li>Integrated terminal: <code>Ctrl+`</code></li>
+<li>Command palette: <code>Ctrl+Shift+P</code></li>
+<li>Install extensions: Extensions sidebar → search → Install</li>
+<li>Recommended: "GitLens", "Thunder Client" (API testing)</li>
+</ul>
+</div>
+
+<div class="section">
+<h3>🤖 Claude Code CLI</h3>
+<p>Claude Code is your AI pair programmer. It lives in your terminal.</p>
+<ul>
+<li><code>claude</code> — Start interactive session</li>
+<li><code>/init</code> — Analyze project, generate CLAUDE.md</li>
+<li><code>/plan</code> — Think before coding (research mode)</li>
+<li><code>/compact</code> — Summarize conversation (free up context)</li>
+<li><code>/clear</code> — Start fresh conversation</li>
+<li><code>/help</code> — See all commands</li>
+</ul>
+<div class="tip">💡 CLAUDE.md is Claude's memory. Put your project rules, conventions, and preferences there. Claude reads it every session.</div>
+</div>
+
+<div class="section">
+<h3>🌐 Making API Calls</h3>
+<p>An API (Application Programming Interface) lets programs talk to each other. You send a request, you get a response.</p>
+<ul>
+<li><code>curl https://api.github.com/users/github</code> — GET request (read data)</li>
+<li><code>curl -X POST URL -d '{"key":"value"}'</code> — POST request (send data)</li>
+<li>HTTP methods: GET (read), POST (create), PUT (update), DELETE (remove)</li>
+<li>Status codes: 200=OK, 404=Not Found, 500=Server Error</li>
+</ul>
+<div class="tip">💡 APIs return JSON. Learn to read it: { "key": "value", "nested": { "inner": "data" } }</div>
+</div>
+
+<div class="section">
+<h3>🐛 Debugging Mindset</h3>
+<ol>
+<li><strong>Read the error</strong> — Full message, every word matters</li>
+<li><strong>Isolate</strong> — What's the smallest case that breaks?</li>
+<li><strong>Google it</strong> — Copy-paste the exact error</li>
+<li><strong>Fix one thing at a time</strong> — Never change 3 things</li>
+<li><strong>Test</strong> — Verify the fix works</li>
+</ol>
+</div>
+
+<footer>
+Day 1 Guidance · <a href="index.html" style="color:#58a6ff">← Schedule</a> · <a href="../" style="color:#58a6ff">Home</a>
+</footer>
+</body>
+</html>
