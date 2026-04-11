@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Day 1 — AI Director Toolkit Assessment</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui;background:#0d1117;color:#e6edf3;padding:20px;max-width:650px;margin:auto}
+h1{color:#58a6ff;font-size:20px;margin-bottom:3px}
+h2{color:#8b949e;font-size:13px;font-weight:normal;margin-bottom:15px}
+.timer{position:fixed;top:10px;right:10px;background:#161b22;border:1px solid #30363d;border-radius:8px;padding:8px 14px;color:#f0883e;font-size:14px;font-weight:bold;z-index:100}
+.q{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:12px;margin:8px 0}
+h3{color:#79c0ff;font-size:13px;margin-bottom:6px}
+p{font-size:12px;margin-bottom:6px;color:#c9d1d9}
+.label-q{display:block;padding:3px 0;cursor:pointer;font-size:12px}
+input[type=radio],input[type=checkbox]{margin-right:8px}
+textarea{background:#0d1117;color:#e6edf3;border:1px solid #30363d;padding:8px;border-radius:4px;width:100%;resize:vertical;font-size:12px}
+.cc{color:#8b949e;font-size:10px;text-align:right}
+button{background:#238636;color:#fff;border:none;padding:10px 24px;border-radius:6px;font-size:14px;cursor:pointer;margin-top:15px;width:100%}
+button:hover{background:#2ea043}
+button:disabled{background:#484f58;cursor:not-allowed}
+.result{display:none;text-align:center;padding:30px 20px}
+.r-icon{font-size:40px;margin-bottom:10px}
+.r-title{color:#3fb950;font-size:18px;margin-bottom:8px}
+.r-fail{color:#f85149}
+.r-sub{color:#8b949e;font-size:13px}
+.level1{border-left:3px solid #58a6ff}
+.level2{border-left:3px solid #d2a8ff}
+.level3{border-left:3px solid #f0883e}
+</style>
+</head>
+<body>
+<div class="timer" id="timer">⏱ 20:00</div>
+<h1>Day 1 — AI Director Toolkit</h1>
+<h2>20 minutes · 20 questions · 65% to pass</h2>
+
+<div class="q level1"><h3>Q1. Multiple Choice [Level 1]</h3><p>What command lists all files including hidden ones in a directory?</p>
+<label class="label-q"><input type="radio" name="q1" value="A"> A. ls -l</label>
+<label class="label-q"><input type="radio" name="q1" value="B"> B. ls -a</label>
+<label class="label-q"><input type="radio" name="q1" value="C"> C. dir /a</label>
+<label class="label-q"><input type="radio" name="q1" value="D"> D. find .</label></div>
+
+<div class="q level1"><h3>Q2. Yes / No [Level 1]</h3><p>Can you undo the last Git commit without losing your changes?</p>
+<label class="label-q"><input type="radio" name="q2" value="yes"> ✅ Yes (git reset --soft HEAD~1)</label>
+<label class="label-q"><input type="radio" name="q2" value="no"> ❌ No</label></div>
+
+<div class="q level1"><h3>Q3. Multiple Choice [Level 1]</h3><p>What does git clone do?</p>
+<label class="label-q"><input type="radio" name="q3" value="A"> A. Creates a new empty repository</label>
+<label class="label-q"><input type="radio" name="q3" value="B"> B. Downloads a remote repository to your local machine</label>
+<label class="label-q"><input type="radio" name="q3" value="C"> C. Merges two branches together</label>
+<label class="label-q"><input type="radio" name="q3" value="D"> D. Deletes a remote branch</label></div>
+
+<div class="q level1"><h3>Q4. Multiple Choice [Level 1]</h3><p>Which VS Code shortcut opens the integrated terminal?</p>
+<label class="label-q"><input type="radio" name="q4" value="A"> A. Ctrl+Shift+P</label>
+<label class="label-q"><input type="radio" name="q4" value="B"> B. Ctrl+` (backtick)</label>
+<label class="label-q"><input type="radio" name="q4" value="C"> C. Ctrl+T</label>
+<label class="label-q"><input type="radio" name="q4" value="D"> D. Ctrl+J</label></div>
+
+<div class="q level1"><h3>Q5. Yes / No [Level 1]</h3><p>Is "cd .." the same as "cd ../"?</p>
+<label class="label-q"><input type="radio" name="q5" value="yes"> ✅ Yes</label>
+<label class="label-q"><input type="radio" name="q5" value="no"> ❌ No</label></div>
+
+<div class="q level1"><h3>Q6. Multiple Choice [Level 1]</h3><p>What is an API?</p>
+<label class="label-q"><input type="radio" name="q6" value="A"> A. A type of database</label>
+<label class="label-q"><input type="radio" name="q6" value="B"> B. A set of rules that allows different software to communicate</label>
+<label class="label-q"><input type="radio" name="q6" value="C"> C. A programming language</label>
+<label class="label-q"><input type="radio" name="q6" value="D"> D. A frontend framework</label></div>
+
+<div class="q level2"><h3>Q7. Multi-Select [Level 2]</h3><p>Which of these are valid HTTP methods? Select all that apply.</p>
+<label class="label-q"><input type="checkbox" name="q7" value="0"> GET</label>
+<label class="label-q"><input type="checkbox" name="q7" value="1"> SEND</label>
+<label class="label-q"><input type="checkbox" name="q7" value="2"> POST</label>
+<label class="label-q"><input type="checkbox" name="q7" value="3"> DELETE</label>
+<label class="label-q"><input type="checkbox" name="q7" value="4"> FETCH</label>
+<label class="label-q"><input type="checkbox" name="q7" value="5"> PUT</label></div>
+
+<div class="q level2"><h3>Q8. Multiple Choice [Level 2]</h3><p>You run "git push" and get "rejected - non-fast-forward". What happened?</p>
+<label class="label-q"><input type="radio" name="q8" value="A"> A. Your branch is behind the remote — pull first</label>
+<label class="label-q"><input type="radio" name="q8" value="B"> B. Git is not installed</label>
+<label class="label-q"><input type="radio" name="q8" value="C"> C. You typed the command wrong</label>
+<label class="label-q"><input type="radio" name="q8" value="D"> D. Your internet is down</label></div>
+
+<div class="q level2"><h3>Q9. Multiple Choice [Level 2]</h3><p>What does HTTP status code 404 mean?</p>
+<label class="label-q"><input type="radio" name="q9" value="A"> A. Server error</label>
+<label class="label-q"><input type="radio" name="q9" value="B"> B. Unauthorized access</label>
+<label class="label-q"><input type="radio" name="q9" value="C"> C. Resource not found</label>
+<label class="label-q"><input type="radio" name="q9" value="D"> D. Request successful</label></div>
+
+<div class="q level2"><h3>Q10. Yes / No [Level 2]</h3><p>Can you use curl to send POST requests with JSON data?</p>
+<label class="label-q"><input type="radio" name="q10" value="yes"> ✅ Yes (curl -X POST -H "Content-Type: application/json" -d '{"key":"value"}' URL)</label>
+<label class="label-q"><input type="radio" name="q10" value="no"> ❌ No</label></div>
+
+<div class="q level2"><h3>Q11. Multiple Choice [Level 2]</h3><p>What is the purpose of package.json in a Node.js project?</p>
+<label class="label-q"><input type="radio" name="q11" value="A"> A. Stores environment variables</label>
+<label class="label-q"><input type="radio" name="q11" value="B"> B. Defines project metadata, dependencies, and scripts</label>
+<label class="label-q"><input type="radio" name="q11" value="C"> C. Compiles TypeScript to JavaScript</label>
+<label class="label-q"><input type="radio" name="q11" value="D"> D. Configures Git</label></div>
+
+<div class="q level2"><h3>Q12. Multiple Choice [Level 2]</h3><p>You get a "Permission denied" error when running a script. What's the most likely fix?</p>
+<label class="label-q"><input type="radio" name="q12" value="A"> A. Restart your computer</label>
+<label class="label-q"><input type="radio" name="q12" value="B"> B. chmod +x script.sh to make it executable</label>
+<label class="label-q"><input type="radio" name="q12" value="C"> C. Delete the script and start over</label>
+<label class="label-q"><input type="radio" name="q12" value="D"> D. Use sudo for everything</label></div>
+
+<div class="q level2"><h3>Q13. Multiple Choice [Level 2]</h3><p>What does "git branch -a" show?</p>
+<label class="label-q"><input type="radio" name="q13" value="A"> A. Only local branches</label>
+<label class="label-q"><input type="radio" name="q13" value="B"> B. All branches (local + remote)</label>
+<label class="label-q"><input type="radio" name="q13" value="C"> C. Active branch only</label>
+<label class="label-q"><input type="radio" name="q13" value="D"> D. Deleted branches</label></div>
+
+<div class="q level2"><h3>Q14. Short Text [Level 2]</h3><p>What is the difference between git merge and git rebase? (max 200 chars)</p>
+<textarea id="q14" maxlength="200" rows="3" oninput="document.getElementById('cc14').textContent=this.value.length+'/200'"></textarea>
+<div class="cc" id="cc14">0/200</div></div>
+
+<div class="q level3"><h3>Q15. Multiple Choice [Level 3]</h3><p>You make an API call and get a CORS error in your browser. Why?</p>
+<label class="label-q"><input type="radio" name="q15" value="A"> A. The API is down</label>
+<label class="label-q"><input type="radio" name="q15" value="B"> B. The server doesn't allow requests from your domain</label>
+<label class="label-q"><input type="radio" name="q15" value="C"> C. You used the wrong HTTP method</label>
+<label class="label-q"><input type="radio" name="q15" value="D"> D. Your API key expired</label></div>
+
+<div class="q level3"><h3>Q16. Multi-Select [Level 3]</h3><p>Which of these are best practices when debugging? Select all that apply.</p>
+<label class="label-q"><input type="checkbox" name="q16" value="0"> Read the full error message before changing anything</label>
+<label class="label-q"><input type="checkbox" name="q16" value="1"> Change multiple things at once to fix it faster</label>
+<label class="label-q"><input type="checkbox" name="q16" value="2"> Use console.log or print statements to trace values</label>
+<label class="label-q"><input type="checkbox" name="q16" value="3"> Google the exact error message</label>
+<label class="label-q"><input type="checkbox" name="q16" value="4"> Delete the file and start over</label>
+<label class="label-q"><input type="checkbox" name="q16" value="5"> Isolate the problem to the smallest reproducible case</label></div>
+
+<div class="q level3"><h3>Q17. Multiple Choice [Level 3]</h3><p>What is the difference between STDIN, STDOUT, and STDERR?</p>
+<label class="label-q"><input type="radio" name="q17" value="A"> A. They are three different programming languages</label>
+<label class="label-q"><input type="radio" name="q17" value="B"> B. Standard input, output, and error streams in Unix systems</label>
+<label class="label-q"><input type="radio" name="q17" value="C"> C. Three types of Git branches</label>
+<label class="label-q"><input type="radio" name="q17" value="D"> D. Three types of API authentication</label></div>
+
+<div class="q level3"><h3>Q18. Multiple Choice [Level 3]</h3><p>Your curl request returns {"rate_limit": "exceeded"}. What should you do?</p>
+<label class="label-q"><input type="radio" name="q18" value="A"> A. Keep retrying until it works</label>
+<label class="label-q"><input type="radio" name="q18" value="B"> B. Add error handling, exponential backoff, and respect rate limit headers</label>
+<label class="label-q"><input type="radio" name="q18" value="C"> C. Switch to a different API entirely</label>
+<label class="label-q"><input type="radio" name="q18" value="D"> D. Delete your API key and get a new one</label></div>
+
+<div class="q level3"><h3>Q19. Short Text [Level 3]</h3><p>Explain what "pipe" (|) does in the terminal. Give one real example. (max 200 chars)</p>
+<textarea id="q19" maxlength="200" rows="3" oninput="document.getElementById('cc19').textContent=this.value.length+'/200'"></textarea>
+<div class="cc" id="cc19">0/200</div></div>
+
+<div class="q level3"><h3>Q20. Ranking [Level 3]</h3><p>Rank these debugging steps from FIRST to LAST (1 = first thing you do):</p>
+<label class="label-q">1st: <select name="q20a"><option value="">--</option><option value="read">Read the error</option><option value="isolate">Isolate the issue</option><option value="fix">Apply fix</option><option value="test">Test the fix</option></select></label>
+<label class="label-q">2nd: <select name="q20b"><option value="">--</option><option value="read">Read the error</option><option value="isolate">Isolate the issue</option><option value="fix">Apply fix</option><option value="test">Test the fix</option></select></label>
+<label class="label-q">3rd: <select name="q20c"><option value="">--</option><option value="read">Read the error</option><option value="isolate">Isolate the issue</option><option value="fix">Apply fix</option><option value="test">Test the fix</option></select></label>
+<label class="label-q">4th: <select name="q20d"><option value="">--</option><option value="read">Read the error</option><option value="isolate">Isolate the issue</option><option value="fix">Apply fix</option><option value="test">Test the fix</option></select></label>
+</div>
+
+<button onclick="submit()" id="submitBtn">Submit Assessment</button>
+<div class="result" id="result">
+<div class="r-icon">✅</div>
+<div class="r-title" id="rTitle">Assessment submitted!</div>
+<div class="r-sub" id="rSub">Close this tab and go back to Discord.<br>I'm reading your results now 👀</div>
+</div>
+
+<script>
+const WH='https://discord.com/api/webhooks/1492515353585258597/PGlgNP1ueMnrFmj68WsenG08Aa02BxS3PPoOHJTBCKQqFE9tstpkxTfiaLMc3CXRmoP8';
+
+// Timer
+let timeLeft=1200;
+const timerEl=document.getElementById('timer');
+const timerInterval=setInterval(()=>{
+  timeLeft--;
+  const m=Math.floor(timeLeft/60);const s=timeLeft%60;
+  timerEl.textContent=`⏱ ${m}:${s.toString().padStart(2,'0')}`;
+  if(timeLeft<=0){clearInterval(timerInterval);submit();alert('Time is up! Submitting your answers.');}
+},1000);
+
+function submit(){
+  clearInterval(timerInterval);
+  let a=[];
+  let q1=document.querySelector('input[name=q1]:checked');
+  let q2=document.querySelector('input[name=q2]:checked');
+  let q3=document.querySelector('input[name=q3]:checked');
+  let q4=document.querySelector('input[name=q4]:checked');
+  let q5=document.querySelector('input[name=q5]:checked');
+  let q6=document.querySelector('input[name=q6]:checked');
+  let q7=[...document.querySelectorAll('input[name=q7]:checked')].map(c=>parseInt(c.value));
+  let q8=document.querySelector('input[name=q8]:checked');
+  let q9=document.querySelector('input[name=q9]:checked');
+  let q10=document.querySelector('input[name=q10]:checked');
+  let q11=document.querySelector('input[name=q11]:checked');
+  let q12=document.querySelector('input[name=q12]:checked');
+  let q13=document.querySelector('input[name=q13]:checked');
+  let q14t=document.getElementById('q14').value;
+  let q15=document.querySelector('input[name=q15]:checked');
+  let q16=[...document.querySelectorAll('input[name=q16]:checked')].map(c=>parseInt(c.value));
+  let q17=document.querySelector('input[name=q17]:checked');
+  let q18=document.querySelector('input[name=q18]:checked');
+  let q19t=document.getElementById('q19').value;
+  let q20=[document.querySelector('[name=q20a]').value,document.querySelector('[name=q20b]').value,document.querySelector('[name=q20c]').value,document.querySelector('[name=q20d]').value];
+
+  a.push({q:1,type:'choice',level:1,selected:q1?q1.value:null,correct:'B',pass:q1&&q1.value==='B'});
+  a.push({q:2,type:'yesno',level:1,selected:q2?q2.value:null,pass:q2&&q2.value==='yes'});
+  a.push({q:3,type:'choice',level:1,selected:q3?q3.value:null,correct:'B',pass:q3&&q3.value==='B'});
+  a.push({q:4,type:'choice',level:1,selected:q4?q4.value:null,correct:'B',pass:q4&&q4.value==='B'});
+  a.push({q:5,type:'yesno',level:1,selected:q5?q5.value:null,pass:q5&&q5.value==='yes'});
+  a.push({q:6,type:'choice',level:1,selected:q6?q6.value:null,correct:'B',pass:q6&&q6.value==='B'});
+  a.push({q:7,type:'multi',level:2,selected:q7,correct:[0,2,3,5],pass:JSON.stringify(q7.sort())===JSON.stringify([0,2,3,5])});
+  a.push({q:8,type:'choice',level:2,selected:q8?q8.value:null,correct:'A',pass:q8&&q8.value==='A'});
+  a.push({q:9,type:'choice',level:2,selected:q9?q9.value:null,correct:'C',pass:q9&&q9.value==='C'});
+  a.push({q:10,type:'yesno',level:2,selected:q10?q10.value:null,pass:q10&&q10.value==='yes'});
+  a.push({q:11,type:'choice',level:2,selected:q11?q11.value:null,correct:'B',pass:q11&&q11.value==='B'});
+  a.push({q:12,type:'choice',level:2,selected:q12?q12.value:null,correct:'B',pass:q12&&q12.value==='B'});
+  a.push({q:13,type:'choice',level:2,selected:q13?q13.value:null,correct:'B',pass:q13&&q13.value==='B'});
+  a.push({q:14,type:'text',level:2,answer:q14t,char_count:q14t.length});
+  a.push({q:15,type:'choice',level:3,selected:q15?q15.value:null,correct:'B',pass:q15&&q15.value==='B'});
+  a.push({q:16,type:'multi',level:3,selected:q16,correct:[0,2,3,5],pass:JSON.stringify(q16.sort())===JSON.stringify([0,2,3,5])});
+  a.push({q:17,type:'choice',level:3,selected:q17?q17.value:null,correct:'B',pass:q17&&q17.value==='B'});
+  a.push({q:18,type:'choice',level:3,selected:q18?q18.value:null,correct:'B',pass:q18&&q18.value==='B'});
+  a.push({q:19,type:'text',level:3,answer:q19t,char_count:q19t.length});
+  a.push({q:20,type:'ranking',level:3,selected:q20,correct:['read','isolate','fix','test'],pass:JSON.stringify(q20)===JSON.stringify(['read','isolate','fix','test'])});
+
+  let scored=a.filter(x=>x.pass!==undefined);
+  let correct=scored.filter(x=>x.pass).length;
+  let pct=Math.round(correct/scored.length*100);
+  let passFail=pct>=65?'PASS':'FAIL';
+
+  document.getElementById('rTitle').textContent=passFail==='PASS'?'✅ You passed!':'❌ Not quite — try again';
+  document.getElementById('rTitle').className=passFail==='PASS'?'r-title':'r-title r-fail';
+  document.getElementById('rSub').innerHTML=`Score: ${correct}/${scored.length} (${pct}%)<br>Close this tab and go back to Discord.<br>I'm reading your results now 👀`;
+
+  document.getElementById('result').style.display='block';
+  document.getElementById('submitBtn').style.display='none';
+  timerEl.style.display='none';
+
+  fetch(WH,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({student:'Hoss',day:1,type:'assessment',timestamp:new Date().toISOString(),score:correct,total:scored.length,percentage:pct,pass:passFail,answers:a,timeUsed:1200-timeLeft})});
+}
+</script>
+</body>
+</html>
