@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Day 0 — Baseline Assessment</title>
+<title>Day 0 - Baseline Assessment</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:system-ui;background:#0d1117;color:#e6edf3;padding:20px;max-width:650px;margin:auto}
@@ -38,7 +38,7 @@ button:hover{background:#2ea043}
 </div>
 
 <div id="assessmentForm">
-<h1>Day 0 — What Do You Know So Far?</h1>
+<h1>Day 0 - What Do You Know So Far?</h1>
 <h2>No timer. No pressure. Honest answers only.</h2>
 
 <div class="q"><h3>Q1. Multiple Choice</h3><p>What does the /plan command do in Claude Code?</p>
@@ -53,7 +53,7 @@ button:hover{background:#2ea043}
 
 <div class="q"><h3>Q3. Multiple Choice</h3><p>What is CLAUDE.md used for in a project?</p>
 <label><input type="radio" name="q3" value="A"> A. Storing API keys securely</label>
-<label><input type="radio" name="q3" value="B"> B. Claude Code's persistent project memory — context that survives between sessions</label>
+<label><input type="radio" name="q3" value="B"> B. Claude Code's persistent project memory - context that survives between sessions</label>
 <label><input type="radio" name="q3" value="C"> C. A required configuration file for GitHub</label>
 <label><input type="radio" name="q3" value="D"> D. A markdown version of your README</label></div>
 
@@ -71,7 +71,7 @@ button:hover{background:#2ea043}
 <label><input type="radio" name="q5" value="C"> C. To restart the terminal session</label>
 <label><input type="radio" name="q5" value="D"> D. To run your project tests</label></div>
 
-<div class="q"><h3>Q6. Short Text (max 150 chars)</h3><p>In one sentence — what does it mean to give Claude Code "context"?</p>
+<div class="q"><h3>Q6. Short Text (max 150 chars)</h3><p>In one sentence - what does it mean to give Claude Code "context"?</p>
 <textarea id="q6" maxlength="150" rows="2" oninput="document.getElementById('cc6').textContent=this.value.length+'/150'"></textarea>
 <div class="cc" id="cc6">0/150</div></div>
 
@@ -99,22 +99,24 @@ Close this page and check Discord for your results 👀<br><br>
 </div>
 
 <script>
-// Check if already submitted
+// Check if already submitted (server-side only, localStorage is just UX)
 fetch('../api/status.json?'+Date.now())
 .then(r=>r.json())
 .then(data=>{
-  if(data.days['0']&&data.days['0'].assessmentTaken){
+  if(data.days['0']&&data.days['0'].status==='completed'){
     document.getElementById('assessmentForm').style.display='none';
     document.getElementById('alreadyDone').style.display='block';
+    document.getElementById('alreadyDone').querySelector('h2').textContent='Day 0 Completed!';
+    document.getElementById('alreadyDone').querySelector('p').innerHTML='Score: '+data.days['0'].score+'% - Check Discord for full results. <a href="../" style="color:#58a6ff">← Home</a>';
   }
 });
 
 const WH='https://discord.com/api/webhooks/1492507919915421848/5O437aLZANRtYfwT7KSx9hvfQIGryo1bx6Ov6PoTOxfckScu-kdYRH_Mr5GVyXIEiSAy';
 
 function submit(){
-  // Prevent double submit
-  if(localStorage.getItem('day0_submitted'))return;
-  
+  // Prevent double submit (session only, clears on page reload)
+  if(window._submitted)return;
+  window._submitted=true;
   let a=[];
   let q1=document.querySelector('input[name=q1]:checked');
   let q2=document.querySelector('input[name=q2]:checked');
@@ -134,17 +136,17 @@ function submit(){
   a.push({q:7,type:'yesno',selected:q7?q7.value:null});
   a.push({q:8,type:'choice',selected:q8?q8.value:null,correct:'C',pass:q8&&q8.value==='C'});
 
-  // Mark as submitted locally
-  localStorage.setItem('day0_submitted','true');
+  // Mark submitted (session only, clears on reload)
+  window._submitted=true;
 
   // Show result, hide form
   document.getElementById('result').style.display='block';
   document.getElementById('assessmentForm').style.display='none';
 
-  // Send to local logger (primary — always saves)
+  // Send to local logger (primary - always saves)
   const payload={student:'Hoss',day:0,type:'warmup',timestamp:new Date().toISOString(),answers:a};
   fetch('http://173.212.225.175:18800',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).catch(()=>{});
-  // Send to Discord webhook (secondary — for channel notification)
+  // Send to Discord webhook (secondary - for channel notification)
   fetch(WH,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).catch(()=>{});
 }
 </script>
