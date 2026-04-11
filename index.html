@@ -6,101 +6,132 @@
 <title>Hoss Bootcamp — Home Base</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:system-ui,-apple-system,sans-serif;background:#0d1117;color:#e6edf3;padding:20px;max-width:700px;margin:auto}
-header{text-align:center;padding:30px 0 20px}
-header h1{color:#58a6ff;font-size:24px;margin-bottom:5px}
-header p{color:#8b949e;font-size:14px}
-.day-card{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:16px;margin:10px 0;transition:border-color 0.2s}
-.day-card:hover{border-color:#58a6ff}
-.day-card.active{border-color:#3fb950}
-.day-card.locked{opacity:0.5}
-.day-num{color:#8b949e;font-size:11px;text-transform:uppercase;letter-spacing:1px}
-.day-title{color:#e6edf3;font-size:16px;font-weight:600;margin:4px 0}
-.day-desc{color:#8b949e;font-size:12px;margin-bottom:8px}
-.day-links{display:flex;gap:8px;flex-wrap:wrap}
-.day-links a{background:#21262d;color:#58a6ff;padding:4px 10px;border-radius:4px;text-decoration:none;font-size:11px;border:1px solid #30363d}
+body{font-family:system-ui,-apple-system,sans-serif;background:#0d1117;color:#e6edf3;padding:20px;max-width:720px;margin:auto}
+header{text-align:center;padding:30px 0 10px}
+header h1{font-size:22px;margin-bottom:5px}
+header h1 span.blue{color:#58a6ff}
+header h1 span.dim{color:#484f58}
+.subtitle{color:#8b949e;font-size:13px;margin-bottom:20px}
+.progress-wrap{background:#21262d;border-radius:10px;padding:12px 16px;margin-bottom:20px;text-align:center}
+.progress-bar{background:#30363d;border-radius:6px;height:10px;overflow:hidden;margin:8px 0}
+.progress-fill{background:linear-gradient(90deg,#238636,#3fb950);height:100%;border-radius:6px;transition:width 0.5s}
+.progress-text{color:#8b949e;font-size:11px}
+.day{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:14px 16px;margin:8px 0;display:flex;align-items:center;gap:14px;transition:border-color 0.2s}
+.day:hover{border-color:#30363d}
+.day.completed{border-color:#23863633}
+.day.active{border-color:#58a6ff55;background:#161b2280}
+.day.locked{opacity:0.45;pointer-events:none}
+.day-icon{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.day.completed .day-icon{background:#23863622;color:#3fb950}
+.day.active .day-icon{background:#1f6feb22;color:#58a6ff}
+.day.locked .day-icon{background:#21262d;color:#484f58}
+.day-info{flex:1;min-width:0}
+.day-label{color:#8b949e;font-size:10px;text-transform:uppercase;letter-spacing:1px}
+.day-title{color:#e6edf3;font-size:15px;font-weight:600;margin:2px 0}
+.day-desc{color:#8b949e;font-size:11px}
+.day-score{color:#8b949e;font-size:11px;margin-top:2px}
+.day-links{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.day-links a{background:#21262d;color:#58a6ff;padding:3px 8px;border-radius:4px;text-decoration:none;font-size:10px;border:1px solid #30363d}
 .day-links a:hover{background:#30363d}
-.day-links .disabled{color:#484f58;pointer-events:none}
-.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600}
-.badge-done{background:#238636;color:#fff}
-.badge-active{background:#1f6feb;color:#fff}
-.badge-locked{background:#21262d;color:#484f58}
-footer{text-align:center;padding:30px 0;color:#484f58;font-size:11px}
+.day-links a.disabled{color:#484f58;pointer-events:none;border-color:#21262d}
+.score-circle{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:bold;flex-shrink:0}
+.score-pass{background:#23863633;color:#3fb950}
+.score-warn{background:#d2992233;color:#d29922}
+.loading{text-align:center;padding:40px;color:#484f58}
+footer{text-align:center;padding:20px 0;color:#484f58;font-size:10px}
+footer a{color:#58a6ff;text-decoration:none}
 </style>
 </head>
 <body>
 <header>
-<h1>🚀 7-Day AI Director Sprint</h1>
-<p>Your bootcamp home base — assessments, resources, cheat sheets</p>
+<h1><span class="blue">🚀</span> 7-Day AI Director Sprint</h1>
+<div class="subtitle">Student: Hossam Darwish · AI Director Bootcamp</div>
 </header>
 
-<div class="day-card active">
-<div class="day-num">Day 0</div>
-<div class="day-title">Baseline Check</div>
-<div class="day-desc">Where are you now? Quick check, no pressure.</div>
-<span class="badge badge-active">START HERE</span>
-<div class="day-links">
-<a href="day0/index.html">📝 Take Assessment</a>
-</div>
+<div class="progress-wrap">
+<div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+<div class="progress-text" id="progressText">Loading...</div>
 </div>
 
-<div class="day-card">
-<div class="day-num">Day 1</div>
-<div class="day-title">AI Director Toolkit</div>
-<div class="day-desc">Terminal, Git, VS Code, first API call, bug fix, real tool.</div>
-<span class="badge badge-locked">🔒 UNLOCKS AFTER DAY 0</span>
-<div class="day-links">
-<a href="day1/index.html">📝 Assessment</a>
-<a href="cheatsheets/day1.html">📋 Cheat Sheet</a>
-<a href="https://claude.nagdy.me" target="_blank">📚 Claude Code Reference</a>
-</div>
-</div>
-
-<div class="day-card locked">
-<div class="day-num">Day 2</div>
-<div class="day-title">Architecture & System Design</div>
-<div class="day-desc">Components, data flow, system thinking.</div>
-<span class="badge badge-locked">🔒 LOCKED</span>
-</div>
-
-<div class="day-card locked">
-<div class="day-num">Day 3</div>
-<div class="day-title">Backend Basics</div>
-<div class="day-desc">APIs, databases, server logic.</div>
-<span class="badge badge-locked">🔒 LOCKED</span>
-</div>
-
-<div class="day-card locked">
-<div class="day-num">Day 4</div>
-<div class="day-title">Frontend Basics</div>
-<div class="day-desc">HTML/CSS/JS, connecting to your backend.</div>
-<span class="badge badge-locked">🔒 LOCKED</span>
-</div>
-
-<div class="day-card locked">
-<div class="day-num">Day 5</div>
-<div class="day-title">DevOps & Deployment</div>
-<div class="day-desc">CI/CD, hosting, going live.</div>
-<span class="badge badge-locked">🔒 LOCKED</span>
-</div>
-
-<div class="day-card locked">
-<div class="day-num">Day 6</div>
-<div class="day-title">Docker & CI/CD</div>
-<div class="day-desc">Containerization, pipelines, automation.</div>
-<span class="badge badge-locked">🔒 LOCKED</span>
-</div>
-
-<div class="day-card locked">
-<div class="day-num">Day 7</div>
-<div class="day-title">Capstone Project</div>
-<div class="day-desc">Put it all together. Ship something real.</div>
-<span class="badge badge-locked">🔒 LOCKED</span>
-</div>
+<div id="days"></div>
+<div class="loading" id="loading">Loading progress...</div>
 
 <footer>
 Hoss Bootcamp · AI Director Sprint · 2026<br>
-<a href="https://claude.nagdy.me" target="_blank" style="color:#58a6ff">Claude Code Reference</a> · <a href="https://github.com/HussEldin/hoss-bootcamp" target="_blank" style="color:#58a6ff">GitHub</a>
+<a href="https://claude.nagdy.me" target="_blank">Claude Code Reference</a> · 
+<a href="https://github.com/HussEldin/hoss-bootcamp" target="_blank">GitHub</a>
 </footer>
+
+<script>
+const DAYS=[
+{n:0,title:"Baseline Check",desc:"Where are you now? Quick check, no pressure."},
+{n:1,title:"AI Director Toolkit",desc:"Terminal, Git, VS Code, first API call, debugging."},
+{n:2,title:"Architecture & System Design",desc:"Components, data flow, system thinking."},
+{n:3,title:"Backend Basics",desc:"APIs, databases, server logic."},
+{n:4,title:"Frontend Basics",desc:"HTML/CSS/JS, connecting to your backend."},
+{n:5,title:"DevOps & Deployment",desc:"CI/CD, hosting, going live."},
+{n:6,title:"Docker & CI/CD",desc:"Containerization, pipelines, automation."},
+{n:7,title:"Capstone Project",desc:"Put it all together. Ship something real."}
+];
+
+fetch('api/status.json?'+Date.now())
+.then(r=>r.json())
+.then(data=>{
+  document.getElementById('loading').style.display='none';
+  const daysEl=document.getElementById('days');
+  let completed=0;
+  
+  for(const d of DAYS){
+    const s=data.days[d.n];
+    if(!s)continue;
+    let cls='locked',icon='🔒',links='';
+    
+    if(s.status==='completed'){
+      cls='completed';icon='✅';completed++;
+      const pct=s.totalQuestions?Math.round(s.correctAnswers/s.totalQuestions*100):0;
+      links=`<div class="day-links"><a href="day${d.n}/results.html">📊 Results</a></div>`;
+    }else if(s.status==='active'){
+      cls='active';icon='🔄';
+      if(d.n===0){
+        links=`<div class="day-links"><a href="day0/assessment.html">📝 Take Assessment</a></div>`;
+      }else{
+        if(s.blocks&&s.blocks.length>0){
+          links=`<div class="day-links">
+            <a href="day${d.n}/index.html">📋 Schedule</a>
+            <a href="day${d.n}/guidance.html">📚 Guidance</a>
+          </div>`;
+        }else{
+          links=`<div class="day-links"><a href="day${d.n}/index.html">📋 Schedule</a></div>`;
+        }
+        if(s.dayAssessment===null&&s.currentBlock>=s.totalBlocks){
+          links+=`<a href="day${d.n}/assessment.html">📝 Day Assessment</a>`;
+        }
+      }
+    }else{
+      links=`<div class="day-links"><span style="color:#484f58;font-size:10px">Unlocks after Day ${d.n>0?d.n-1:0}</span></div>`;
+    }
+    
+    daysEl.innerHTML+=`<div class="day ${cls}">
+      <div class="day-icon">${icon}</div>
+      <div class="day-info">
+        <div class="day-label">Day ${d.n}</div>
+        <div class="day-title">${d.title}</div>
+        <div class="day-desc">${d.desc}</div>
+        ${s.status==='completed'&&s.score?`<div class="day-score">Score: ${s.correctAnswers}/${s.totalQuestions} (${s.score}%)</div>`:''}
+        ${links}
+      </div>
+      ${s.status==='completed'&&s.score?`<div class="score-circle ${s.score>=70?'score-pass':'score-warn'}">${s.score}%</div>`:''}
+    </div>`;
+  }
+  
+  const pct=Math.round(completed/8*100);
+  document.getElementById('progressFill').style.width=pct+'%';
+  document.getElementById('progressText').textContent=`Progress: ${completed}/8 days completed (${pct}%)`;
+})
+.catch(err=>{
+  document.getElementById('loading').textContent='Error loading progress. Try refreshing.';
+  console.error(err);
+});
+</script>
 </body>
 </html>

@@ -31,6 +31,7 @@ button:disabled{background:#484f58;cursor:not-allowed}
 </style>
 </head>
 <body>
+<script>fetch('../api/status.json?'+Date.now()).then(r=>r.json()).then(d=>{if(!d.days['1']||d.days['1'].status==='locked'){window.location.href='../';}});</script>
 <div class="timer" id="timer">⏱ 20:00</div>
 <h1>Day 1 — AI Director Toolkit</h1>
 <h2>20 minutes · 20 questions · 65% to pass</h2>
@@ -170,7 +171,7 @@ const timerInterval=setInterval(()=>{
   if(timeLeft<=0){clearInterval(timerInterval);submit();alert('Time is up! Submitting your answers.');}
 },1000);
 
-function submit(){
+function submit(){if(localStorage.getItem("day1_submitted"))return;localStorage.setItem("day1_submitted","true");
   clearInterval(timerInterval);
   let a=[];
   let q1=document.querySelector('input[name=q1]:checked');
